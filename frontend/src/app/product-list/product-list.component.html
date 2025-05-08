@@ -1,0 +1,63 @@
+<nav class="navbar">
+  <div class="navbar-brand"><a routerLink="/">Techop</a></div>
+  <ul class="navbar-links">
+    <li><a routerLink="/about-us">Sobre Nosotros</a></li>
+    <li><a routerLink="/products">Productos</a></li>
+    <li><a routerLink="/account">Cuenta</a></li>
+    <li><a routerLink="/cart">Carrito de Compra</a></li>
+  </ul>
+</nav>
+
+<body>
+  <div class="filtro-container">
+    <input type="text" [(ngModel)]="filtro" placeholder="Buscar producto..." />
+  </div>
+
+  <div class="productos-container">
+    <div *ngFor="let producto of productosFiltrados()" class="producto">
+      <img [src]="producto.imagen" [alt]="producto.nombre" />
+      <h2>{{ producto.nombre }}</h2>
+      <p>{{ producto.descripcion }}</p>
+      <span class="categoria">{{ producto.categoria }}</span>
+      <button (click)="comprar(producto)">Comprar</button>
+    </div>
+  </div>
+</body>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-column">
+      <h4>Techop</h4>
+      <ul>
+        <li><a routerLink="/products">Productos</a></li>
+        <li><a routerLink="/about-us">Sobre Nosotros</a></li>
+        <li><a routerLink="/account">Cuenta</a></li>
+        <li><a routerLink="/cart">Carrito</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Atención al Cliente</h4>
+      <ul>
+        <li><a href="#">Preguntas Frecuentes</a></li>
+        <li><a href="#">Términos y Condiciones</a></li>
+        <li><a href="#">Política de Privacidad</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Métodos de Pago</h4>
+      <div class="payment-methods">
+        <img src="assets/img/visa.svg" alt="Visa">
+        <img src="assets/img/mastercard.svg" alt="Mastercard">
+        <img src="assets/img/paypal.svg" alt="PayPal">
+        <img src="assets/img/applePay.svg" alt="apple-pay">
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {{ currentYear }} Techop E-commerce. Todos los derechos reservados.</p>
+  </div>
+</footer>

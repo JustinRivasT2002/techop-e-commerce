@@ -1,0 +1,124 @@
+<nav class="navbar">
+  <div class="navbar-brand"><a routerLink="/">Techop</a></div>
+  <ul class="navbar-links">
+    <li><a routerLink="/about-us">Sobre Nosotros</a></li>
+    <li><a routerLink="/products">Productos</a></li>
+    <li><a routerLink="/account">Cuenta</a></li>
+    <li><a routerLink="/cart">Carrito de Compra</a></li>
+  </ul>
+</nav>
+
+<body>
+  <div class="wrapper">
+    <!-- Formulario Sign Up -->
+    <div class="form-wrapper sign-up">
+      <form (ngSubmit)="onSubmitSignUp()">
+        <h2>Sign Up</h2>
+        <div class="input-group">
+          <input type="email" [(ngModel)]="userData.email" name="email" required>
+          <label>Email</label>
+        </div>
+        <div class="input-group">
+          <input type="password" [(ngModel)]="userData.password" name="password" required>
+          <label>Password</label>
+        </div>
+        <button type="submit" class="btn">
+          <img src="../../assets/img/email-icon.png" alt="Email Logo"> Sign up
+        </button>
+        <button type="button" class="btn google-btn" (click)="signInWithGoogle()">
+          <img src="../../assets/img/google-icon.png" alt="Google Logo"> Sign up with Google
+        </button>
+        <div class="sign-link">
+          <p>Already have an account? <a href="#" class="signIn-link" (click)="toggleForm($event, false)">Sign in</a></p>
+        </div>
+      </form>
+    </div>
+
+    <!-- Formulario Sign In -->
+    <div class="form-wrapper sign-in">
+      <form *ngIf="!showResetPasswordForm" (ngSubmit)="onSubmitLogin()">
+        <h2>Login</h2>
+        <div class="input-group">
+          <input type="email" [(ngModel)]="userData.email" name="email" required>
+          <label>Email</label>
+        </div>
+        <div class="input-group">
+          <input type="password" [(ngModel)]="userData.password" name="password" required>
+          <label>Password</label>
+        </div>
+        <div class="forgot-pass">
+          <a href="#" (click)="toggleFormResetPassword($event, true)">¿Olvidaste tu contraseña?</a>
+        </div>
+        <button type="submit" class="btn">
+          <img src="../../assets/img/email-icon.png" alt="Email Logo"> Login
+        </button>
+        <button type="button" class="btn google-btn" (click)="signInWithGoogle()">
+          <img src="../../assets/img/google-icon.png" alt="Google Logo"> Login with Google
+        </button>
+        <div class="sign-link">
+          <p>Don't have an account? <a href="#" class="signUp-link" (click)="toggleForm($event, true)">Sign up</a></p>
+        </div>
+      </form>
+      <div *ngIf="showResetPasswordForm">
+        <!-- Formulario de restablecimiento de contraseña -->
+        <div class="reset-password-form">
+          <h2>Restablecer Contraseña</h2>
+          <div class="input-group">
+            <input type="email" [(ngModel)]="emailForReset" name="emailForReset" required>
+            <label>Correo Electrónico</label>
+          </div>
+          <button type="button" class="btn" (click)="onResetPassword()">
+            Enviar Correo de Restablecimiento
+          </button>
+          <div class="sign-link">
+            <p>¿Ya tienes una cuenta? <a href="#" class="signIn-link" (click)="toggleForm($event, false)">Iniciar sesión</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Mensaje de error -->
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  </div>
+</body>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-column">
+      <h4>Techop</h4>
+      <ul>
+        <li><a routerLink="/products">Productos</a></li>
+        <li><a routerLink="/about-us">Sobre Nosotros</a></li>
+        <li><a routerLink="/account">Cuenta</a></li>
+        <li><a routerLink="/cart">Carrito</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Atención al Cliente</h4>
+      <ul>
+        <li><a href="#">Preguntas Frecuentes</a></li>
+        <li><a href="#">Términos y Condiciones</a></li>
+        <li><a href="#">Política de Privacidad</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Métodos de Pago</h4>
+      <div class="payment-methods">
+        <img src="assets/img/visa.svg" alt="Visa">
+        <img src="assets/img/mastercard.svg" alt="Mastercard">
+        <img src="assets/img/paypal.svg" alt="PayPal">
+        <img src="assets/img/applePay.svg" alt="apple-pay">
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {{ currentYear }} Techop E-commerce. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+

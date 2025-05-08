@@ -1,0 +1,89 @@
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/">Techop</a>
+  </div>
+  <ul class="navbar-links">
+    <li><a routerLink="/about-us">Sobre Nosotros</a></li>
+    <li><a routerLink="/products">Productos</a></li>
+    <li><a routerLink="/account">Cuenta</a></li>
+    <li><a routerLink="/cart">Carrito de Compra</a></li>
+  </ul>
+</nav>
+
+<body>
+  <div class="carrito-container">
+    <h2>Carrito de Compra</h2>
+
+    <div *ngIf="productosCarrito && productosCarrito.length > 0; else vacio">
+      <div *ngFor="let producto of productosCarrito" class="producto-carrito">
+        <img *ngIf="producto.imagen" [src]="producto.imagen" [alt]="producto.nombre || 'Producto'" class="producto-img" />
+
+        <div class="producto-info">
+          <h3>{{ producto.nombre || 'Sin nombre' }}</h3>
+
+          <div class="cantidad-control">
+            <button (click)="reducir(producto.id)">−</button>
+            <span>{{ producto.cantidad }}</span>
+            <button (click)="aumentar(producto.id)">+</button>
+          </div>
+        </div>
+
+        <div class="producto-precio">
+          <p><strong>{{ (producto.precio * producto.cantidad) | currency:'EUR' }}</strong></p>
+        </div>
+      </div>
+
+      <div class="total-carrito">
+        <p><strong>Total:</strong> {{ totalCarrito | currency:'EUR' }}</p>
+      </div>
+
+      <button class="finalizar-btn" (click)="finalizarCompra()">Finalizar Compra</button>
+    </div>
+
+    <ng-template #vacio>
+      <div class="carrito-vacio">
+        <p>🛒 Tu carrito está vacío.</p>
+        <a routerLink="/products" class="volver-productos">Explorar productos</a>
+      </div>
+    </ng-template>
+  </div>
+</body>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-column">
+      <h4>Techop</h4>
+      <ul>
+        <li><a routerLink="/products">Productos</a></li>
+        <li><a routerLink="/about-us">Sobre Nosotros</a></li>
+        <li><a routerLink="/account">Cuenta</a></li>
+        <li><a routerLink="/cart">Carrito</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Atención al Cliente</h4>
+      <ul>
+        <li><a href="#">Preguntas Frecuentes</a></li>
+        <li><a href="#">Términos y Condiciones</a></li>
+        <li><a href="#">Política de Privacidad</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Métodos de Pago</h4>
+      <div class="payment-methods">
+        <img src="assets/img/visa.svg" alt="Visa">
+        <img src="assets/img/mastercard.svg" alt="Mastercard">
+        <img src="assets/img/paypal.svg" alt="PayPal">
+        <img src="assets/img/applePay.svg" alt="apple-pay">
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {{ currentYear }} Techop E-commerce. Todos los derechos reservados.</p>
+  </div>
+</footer>

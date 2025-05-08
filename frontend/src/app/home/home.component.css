@@ -1,0 +1,223 @@
+/* home.component.css */
+/* Resetear márgenes y paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'BasisGrotesque';
+  src: url('../../assets/fonts/BasisGrotesqueArabicPro-Light.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  z-index: 1;
+  position: relative;
+}
+
+
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Contenedor del video */
+.video-container {
+  position: fixed; /* Hace que ocupe toda la ventana */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Ancho total de la pantalla */
+  height: 100vh; /* Alto total de la pantalla */
+  z-index: -1; /* Coloca el video detrás del contenido */
+}
+
+/* Estilo del video */
+.video-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que el video cubra todo el espacio */
+}
+
+/* Contenido encima del video */
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  font-family: 'BasisGrotesque', sans-serif;
+  color: white;
+  text-align: center;
+  z-index: 2;
+}
+
+.content span {
+  display: inline-block; /* Necesario para animar cada letra */
+  opacity: 0; /* Inicialmente invisible */
+  transform: translateY(-100%); /* Empieza desde arriba */
+  animation: slideIn 1s forwards;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilos para el navbar */
+.navbar {
+  font-family:'BasisGrotesque' , sans-serif;
+  position: fixed; /* Fija el navbar en la parte superior */
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  color: white;
+  z-index: 1000; /* Asegura que el navbar esté por encima del video */
+}
+
+.navbar-brand a{
+  text-transform: uppercase;
+  text-decoration: none;
+  color: white;
+  letter-spacing: 0.15em;
+  display: inline-block;
+  padding: 15px 0;
+  position: relative;
+}
+
+.navbar-brand a:hover {
+  color: #00fffc;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li{
+  display: table-cell;
+  position: relative;
+  padding: 15px 0;
+}
+
+.navbar-links a {
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  display: inline-block;
+  padding: 15px 20px;
+  position: relative;
+}
+
+.navbar-links a:hover {
+  width: 100%;
+  left: 0;
+  color: #00fffc;
+}
+
+@media screen and (max-height: 300px){
+  .navbar-links ul {
+    margin-top: 40px;
+  }
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+.footer {
+  background: transparent;
+  color: white;
+  padding: 1rem 2rem 1rem 2rem;
+  font-family: 'BasisGrotesque', sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-column h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #00fffc;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+  color: #00fffc;
+}
+
+.payment-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.payment-methods img {
+  height: 35px;
+  transition: transform 0.3s ease;
+}
+
+.payment-methods img:hover {
+  transform: scale(1.1);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 1rem;
+}

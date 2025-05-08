@@ -1,0 +1,285 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'BasisGrotesque', sans-serif;
+}
+
+@font-face {
+  font-family: 'BasisGrotesque';
+  src: url('../../assets/fonts/BasisGrotesqueArabicPro-Light.woff2') format('woff2');
+  font-weight: bolder;
+  font-style: normal;
+}
+
+:host {
+  display: block;
+  height: max-content;
+  color: #333;
+  padding: 20px;
+  background: linear-gradient(to bottom, #ffffff 0%, #1e3c72 100%);
+}
+
+main {
+  width: min(1200px, 90vw);
+  margin: auto;
+}
+
+h1 {
+  font-family: 'BasisGrotesque', sans-serif;
+  animation: fadeIn 3s ease-in-out;
+  font-size: 4em;
+  color: #333;
+  text-align: center;
+  margin-top: 60px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  letter-spacing: 5px;
+  font-weight: bolder;
+  position: relative;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  width: 200px;
+  height: 4px;
+  background: linear-gradient(to bottom, #ffffff 0%, #1e3c72 100%);
+  margin: 10px auto 0;
+}
+
+.navbar {
+  font-family: 'BasisGrotesque', sans-serif;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  z-index: 1000;
+}
+
+.navbar-brand a {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #333;
+  letter-spacing: 0.15em;
+  display: inline-block;
+  padding: 15px 0;
+  position: relative;
+}
+
+.navbar-brand a:hover {
+  color: #00fffc;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  display: table-cell;
+  position: relative;
+  padding: 15px 0;
+}
+
+.navbar-links a {
+  color: #333;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  display: inline-block;
+  padding: 15px 20px;
+  position: relative;
+}
+
+.navbar-links a:hover {
+  color: #00fffc;
+}
+
+.techop-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.techop {
+  max-width: 40%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.text-container {
+  flex: 1;
+  max-width: 55%;
+}
+
+.description {
+  font-family: 'BasisGrotesque', sans-serif;
+  font-size: 1.1em;
+  color: #333;
+  text-align: justify;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.slider {
+  width: 100%;
+  height: var(--height);
+  overflow: hidden;
+  mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 10% 90%,
+      transparent
+  );
+}
+
+.slider .list {
+  display: flex;
+  width: 100%;
+  min-width: calc(var(--width) * var(--quantity));
+  position: relative;
+}
+
+.slider .list .item {
+  width: var(--width);
+  height: var(--height);
+  position: absolute;
+  left: 100%;
+  animation: autoRun 10s linear infinite;
+  transition: filter 0.5s;
+  animation-delay: calc( (10s / var(--quantity)) * (var(--position) - 1) - 10s)!important;
+}
+
+.slider .list .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@keyframes autoRun {
+  from {
+      left: 100%;
+  }
+  to {
+      left: calc(var(--width) * -1);
+  }
+}
+
+.slider:hover .item {
+  animation-play-state: paused!important;
+  filter: grayscale(1);
+}
+
+.slider .item:hover {
+  filter: grayscale(0);
+}
+
+.slider[reverse="true"] .item {
+  animation: reversePlay 10s linear infinite;
+}
+
+@keyframes reversePlay {
+  from {
+      left: calc(var(--width) * -1);
+  }
+  to {
+      left: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.footer {
+  background-color: #1e3c72 100%;
+  color: white;
+  padding: 3rem 2rem 1rem 2rem;
+  font-family: 'BasisGrotesque', sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-column h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #00fffc;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-column ul li a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+  color: #00fffc;
+}
+
+.payment-methods {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.payment-methods img {
+  height: 35px;
+  transition: transform 0.3s ease;
+}
+
+.payment-methods img:hover {
+  transform: scale(1.1);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 1rem;
+}

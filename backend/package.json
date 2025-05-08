@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@elasticemail/elasticemail-client": "^4.0.26",
+    "@elasticemail/elasticemail-client-ts-axios": "^4.0.22",
+    "axios": "^1.7.9",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "elastic-email": "^1.0.4",
+    "express": "^4.21.2",
+    "firebase-admin": "^13.1.0",
+    "morgan": "^1.10.0",
+    "mssql": "^11.0.1",
+    "nodemailer": "^6.10.0"
+  }
+}

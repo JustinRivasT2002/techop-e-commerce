@@ -1,0 +1,79 @@
+<main>
+  <nav class="navbar">
+    <div class="navbar-brand"><a routerLink="/">Techop</a></div>
+    <ul class="navbar-links">
+      <li><a routerLink="/about-us">Sobre Nosotros</a></li>
+      <li><a routerLink="/products">Productos</a></li>
+      <li><a routerLink="/account">Cuenta</a></li>
+      <li><a routerLink="/cart">Carrito de Compra</a></li>
+    </ul>
+  </nav>
+  <h1>About us</h1>
+
+  <div class="slider" [ngStyle]="{
+    '--width': '100px',
+    '--height': '50px',
+    '--quantity': '10'
+  }">
+    <div class="list">
+      <div class="item" *ngFor="let logo of logos; let i = index" [ngStyle]="{'--position': i + 1}">
+        <img [src]="logo.src" [alt]="logo.alt">
+      </div>
+    </div>
+  </div>
+
+  <div class="techop-container">
+    <img class="techop" src="assets/img/Techop-about-us.png" alt="Techop About Us">
+    <div class="text-container">
+      <p class="description">
+        En Techop, la tecnología no es solo nuestro negocio, es nuestra pasión. Nacimos con la visión de ofrecer lo mejor en innovación, rendimiento y calidad a entusiastas,
+        profesionales y gamers que buscan potenciar su experiencia digital.
+      </p>
+      <p class="description">
+        Desde nuestros inicios, hemos trabajado con un compromiso claro: hacer que la tecnología de vanguardia sea accesible para todos. Por eso, seleccionamos cuidadosamente cada producto, desde potentes PCs y componentes de alto rendimiento hasta los últimos accesorios y periféricos del mercado.
+      </p>
+      <p class="description">
+        Pero Techop es más que una tienda, es una comunidad. Creemos en el poder de la tecnología para transformar vidas, impulsar ideas y desafiar límites. Nos apasiona asesorarte en cada elección, ofreciéndote no solo productos, sino soluciones que se adapten a tus necesidades.
+      </p>
+      <p class="description">Bienvenido a Techop. Innovación, rendimiento y confianza en cada compra.</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h4>Techop</h4>
+        <ul>
+          <li><a routerLink="/products">Productos</a></li>
+          <li><a routerLink="/about-us">Sobre Nosotros</a></li>
+          <li><a routerLink="/account">Cuenta</a></li>
+          <li><a routerLink="/cart">Carrito</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Atención al Cliente</h4>
+        <ul>
+          <li><a href="#">Preguntas Frecuentes</a></li>
+          <li><a href="#">Términos y Condiciones</a></li>
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Métodos de Pago</h4>
+        <div class="payment-methods">
+          <img src="assets/img/visa.svg" alt="Visa">
+          <img src="assets/img/mastercard.svg" alt="Mastercard">
+          <img src="assets/img/paypal.svg" alt="PayPal">
+          <img src="assets/img/applePay.svg" alt="apple-pay">
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ currentYear }} Techop E-commerce. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+</main>
