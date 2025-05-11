@@ -249,4 +249,131 @@ h2 {
   padding-top: 1rem;
 }
 
+/* Estilos generales del popup */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  width: 500px;
+  text-align: center;
+  font-family: 'BasisGrotesque', sans-serif;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Título del popup */
+.popup-content h2 {
+  font-size: 1.5rem;
+  color: #1e3c72;
+  margin-bottom: 1rem;
+}
+
+/* Estilos para etiquetas */
+.popup-content label {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #1e3c72;
+  text-align: left;
+}
+
+/* Estilos para los campos de entrada */
+.popup-content input,
+.popup-content select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #1e3c72;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #1e3c72;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none; /* Oculta el estilo por defecto del navegador */
+}
+
+.popup-content input:focus,
+.popup-content select:focus {
+  outline: none;
+  border-color: #00fffc;
+  box-shadow: 0 0 8px rgba(0, 255, 252, 0.5);
+}
+
+/* Estilos para el desplegable de método de pago */
+.popup-content select:hover {
+  border-color: #00fffc;
+  background-color: #f0f8ff;
+}
+
+.popup-content select option {
+  font-size: 1rem;
+  padding: 0.5rem;
+  background-color: #ffffff;
+  color: #1e3c72;
+}
+
+/* Estilos para los botones */
+.finalizar-btn,
+.confirmar-btn {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.finalizar-btn {
+  background-color: #1e3c72;
+  color: white;
+}
+
+.finalizar-btn:hover {
+  background-color: #00fffc;
+  color: black;
+}
+
+.confirmar-btn {
+  background-color: #ccc;
+  color: black;
+}
+
+.confirmar-btn:hover {
+  background-color: #999;
+}
+
+/* Estilos para el total a pagar */
+.popup-content p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #1e3c72;
+  margin-top: 1rem;
+}
+
+.error-msg {
+  color: red;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-top: 0.3rem;
+  text-align: left;
+}
+
+/* Eliminar flechas del input de teléfono */
+input[type="number"][inputmode="numeric"]::-webkit-outer-spin-button,
+input[type="number"][inputmode="numeric"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 

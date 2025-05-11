@@ -8,6 +8,14 @@ import { ProductoEnCarrito } from '../interfaces/productoEnCarrito';
 export class CartService {
   private carrito: ProductoEnCarrito[] = [];
 
+  constructor() {
+    this.cargarCarritoDesdeLocalStorage();
+  }
+
+  private cargarCarritoDesdeLocalStorage() {
+    this.carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+  }
+
   agregarAlCarrito(producto: Producto) {
     const existente = this.carrito.find(p => p.id === producto.id);
     if (existente) {
@@ -15,6 +23,7 @@ export class CartService {
     } else {
       this.carrito.push({ ...producto, cantidad: 1 });
     }
+    this.guardarCarrito();
   }
 
   obtenerCarrito(): ProductoEnCarrito[] {
@@ -26,6 +35,7 @@ export class CartService {
     if (producto) {
       producto.cantidad++;
     }
+    this.guardarCarrito();
   }
 
   reducirCantidad(id: number) {
@@ -36,9 +46,15 @@ export class CartService {
         this.carrito.splice(index, 1);
       }
     }
+    this.guardarCarrito();
   }
 
   vaciarCarrito() {
     this.carrito = [];
+    localStorage.removeItem('carrito');
+  }
+
+  private guardarCarrito() {
+    localStorage.setItem('carrito', JSON.stringify(this.carrito));
   }
 }

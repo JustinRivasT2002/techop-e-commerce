@@ -1,1 +1,64 @@
-<p>estamos en profile</p>
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/">Techop</a>
+  </div>
+  <ul class="navbar-links">
+    <li><a routerLink="/about-us">Sobre Nosotros</a></li>
+    <li><a routerLink="/products">Productos</a></li>
+    <li><a routerLink="/account">Cuenta</a></li>
+    <li><a routerLink="/cart">Carrito de Compra</a></li>
+  </ul>
+</nav>
+
+<body>
+  <!-- Mensaje de bienvenida -->
+  <div class="bienvenida-container">
+    <div class="bienvenida-card">
+      <h1>¡Gracias por Formar parte Techop-Ecommerce! 🎉</h1>
+      <p>Si eres un nuevo usuario te hemos enviado un correo de bienvenida a tu cuenta.</p>
+      <p>Tanto si eres un nuevo usuario como un cliente, podrás recibir información detallada si realizas un pedido.</p>
+      <p>Explora nuestra tienda y encuentra los mejores productos tecnológicos.</p>
+      <button routerLink="/products">Explorar Productos</button>
+    </div>
+  </div>
+</body>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-column">
+      <h4>Techop</h4>
+      <ul>
+        <li><a routerLink="/products">Productos</a></li>
+        <li><a routerLink="/about-us">Sobre Nosotros</a></li>
+        <li><a routerLink="/account">Cuenta</a></li>
+        <li><a routerLink="/cart">Carrito</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Atención al Cliente</h4>
+      <ul>
+        <li><a href="#">Preguntas Frecuentes</a></li>
+        <li><a href="#">Términos y Condiciones</a></li>
+        <li><a href="#">Política de Privacidad</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Métodos de Pago</h4>
+      <div class="payment-methods">
+        <img src="assets/img/visa.svg" alt="Visa">
+        <img src="assets/img/mastercard.svg" alt="Mastercard">
+        <img src="assets/img/paypal.svg" alt="PayPal">
+        <img src="assets/img/applePay.svg" alt="Apple Pay">
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {{ currentYear }} Techop E-commerce. Todos los derechos reservados.</p>
+  </div>
+</footer>

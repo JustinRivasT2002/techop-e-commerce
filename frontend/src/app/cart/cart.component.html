@@ -38,7 +38,44 @@
         <p><strong>Total:</strong> {{ totalCarrito | currency:'EUR' }}</p>
       </div>
 
-      <button class="finalizar-btn" (click)="finalizarCompra()">Finalizar Compra</button>
+      <!-- Botón para finalizar compra -->
+      <button class="finalizar-btn" (click)="mostrarPopup()">Continuar</button>
+    </div>
+
+    <!-- Popup de confirmación -->
+    <div class="popup" *ngIf="mostrarResumen">
+      <div class="popup-content">
+        <h2>Confirmar Compra</h2>
+
+        <label>Nombre Completo:</label>
+        <input type="text" [(ngModel)]="nombreUsuario">
+        <p *ngIf="intentoEnvio && !nombreUsuario" class="error-msg">⚠️ Este campo es obligatorio.</p>
+
+        <label>Email:</label>
+        <input type="email" [(ngModel)]="emailUsuario" required>
+        <p *ngIf="intentoEnvio && !emailUsuario" class="error-msg">⚠️ Este campo es obligatorio.</p>
+        <p *ngIf="intentoEnvio && emailUsuario && !validarEmail()" class="error-msg">⚠️ Introduce un correo válido.</p>
+
+        <label>Teléfono:</label>
+        <input type="number" [(ngModel)]="telefonoUsuario" inputmode="numeric" pattern="[0-9]*">
+        <p *ngIf="intentoEnvio && !telefonoUsuario" class="error-msg">⚠️ Este campo es obligatorio.</p>
+        <p *ngIf="intentoEnvio && telefonoUsuario && !validarTelefono()" class="error-msg">⚠️ Introduce un número de teléfono válido.</p>
+
+        <label>Dirección:</label>
+        <input type="text" [(ngModel)]="direccionUsuario">
+        <p *ngIf="intentoEnvio && !direccionUsuario" class="error-msg">⚠️ Este campo es obligatorio.</p>
+
+        <label>Método de Pago:</label>
+        <select [(ngModel)]="metodoPagoId">
+          <option *ngFor="let metodo of metodosPago" [value]="metodo.id">{{ metodo.nombre }}</option>
+        </select>
+        <p *ngIf="intentoEnvio && !metodoPagoId" class="error-msg">⚠️ Debes seleccionar un método de pago.</p>
+
+        <p><strong>Total a pagar:</strong> {{ totalCarrito | currency:'EUR' }}</p>
+
+        <button class="finalizar-btn" (click)="finalizarCompra()">Finalizar compra</button>
+        <button class="confirmar-btn" (click)="cerrarPopup()">Cancelar</button>
+      </div>
     </div>
 
     <ng-template #vacio>

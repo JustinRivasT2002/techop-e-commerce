@@ -1,7 +1,7 @@
 -- Crear tabla de Clientes
 CREATE TABLE clientes (
     id INT IDENTITY(1,1) PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
+    nombre VARCHAR(100),
     email VARCHAR(100) UNIQUE NOT NULL,
     telefono VARCHAR(20),
     direccion TEXT
@@ -20,7 +20,6 @@ CREATE TABLE productos (
     descripcion TEXT,
     precio DECIMAL(10,2) NOT NULL,
     categoria_id INT NOT NULL,
-    stock INT NOT NULL,
     imagen VARCHAR(255), -- Nueva columna para la imagen del producto
     FOREIGN KEY (categoria_id) REFERENCES categorias(id) ON DELETE CASCADE
 );
@@ -192,3 +191,15 @@ INSERT INTO inventarios (producto_id, cantidad) VALUES
 (24, 12), -- Consola Xbox Series X
 (25, 9);  -- Smartwatch Apple Watch Series 8
 
+-- Actualizar inventario automaticamente (Recordatorio personal de descomentar para implementarlo automaticamente en el servidor)
+--CREATE TRIGGER tr_actualizar_inventario
+--ON detalles_pedido
+--AFTER INSERT
+--AS
+--BEGIN
+--    UPDATE i
+--    SET i.cantidad = i.cantidad - d.cantidad,
+--        i.ultima_actualizacion = GETDATE()
+--    FROM inventarios i
+--    JOIN inserted d ON i.producto_id = d.producto_id;
+--END;

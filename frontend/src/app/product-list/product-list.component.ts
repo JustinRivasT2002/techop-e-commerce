@@ -38,8 +38,7 @@ export class ProductListComponent implements OnInit{
     }
 
     const filtrados = this.productos.filter(producto =>
-      (producto.nombre?.toLowerCase().includes(this.filtro.toLowerCase()) ||
-      producto.categoria?.toLowerCase().includes(this.filtro.toLowerCase()))
+      (producto.nombre?.toLowerCase().includes(this.filtro.toLowerCase()))
     );
 
     console.log('Productos filtrados:', filtrados);

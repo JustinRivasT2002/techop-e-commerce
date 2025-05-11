@@ -29,6 +29,7 @@ export class ProductDetailComponent implements OnInit {
       this.productoServicio.getProductoById(Number(idProducto)).subscribe(
         (producto) => {
           this.producto = producto; // Asignar el producto encontrado
+          console.log('producto: ', this.producto)
           this.asignarDescripcionPersonalizada(Number(idProducto)); // Llamar a la función para asignar descripción personalizada
         },
         (error) => {
@@ -39,7 +40,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   asignarDescripcionPersonalizada(idProducto: number) {
-    // Asignar descripciones personalizadas basadas en el ID del producto
     switch (idProducto) {
       case 1:
         this.nuevaDescripcion = 'Esta es una laptop de alto rendimiento, ideal para gamers y profesionales creativos.';
@@ -51,7 +51,7 @@ export class ProductDetailComponent implements OnInit {
         this.nuevaDescripcion = 'Teclado mecánico con iluminación RGB personalizable para una experiencia única.';
         break;
       default:
-        this.nuevaDescripcion = this.producto?.descripcion || 'Descripción no disponible'; // Descripción predeterminada
+        this.nuevaDescripcion = this.producto?.descripcion || 'Descripción no disponible';
         break;
     }
   }
