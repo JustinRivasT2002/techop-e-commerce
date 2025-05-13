@@ -7,7 +7,7 @@ const {
   registrarCliente,
   crearPedido
 } = require('./database/db');
-const { sendWelcomeEmail } = require('./services/mail_SMTP');
+const { sendWelcomeEmail, sendOrderConfirmationEmail } = require('./services/mail_SMTP');
 
 const router = express.Router();
 
@@ -94,6 +94,10 @@ router.post('/create-order', async (req, res) => {
 
   try {
     const result = await crearPedido(pedidoData);
+
+    // Enviar correo de confirmación
+    await sendOrderConfirmationEmail(pedidoData);
+
     res.status(201).json(result);
   } catch (error) {
     console.error('❌ Error al registrar el pedido:', error);

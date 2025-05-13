@@ -48,4 +48,57 @@ const sendWelcomeEmail = async (email) => {
     }
 };
 
-module.exports = { sendWelcomeEmail };
+const sendOrderConfirmationEmail = async (pedido) => {
+    const { email, pedidoId, total, detalles } = pedido;
+
+    const productosHtml = detalles.map(item => `
+        <tr>
+            <td>${item.nombre}</td>
+            <td>${item.cantidad}</td>
+            <td>${item.precio_unitario.toFixed(2)} €</td>
+            <td>${(item.cantidad * item.precio_unitario).toFixed(2)} €</td>
+        </tr>
+    `).join('');
+
+    const html = `
+        <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
+            <h2>🛒 Confirmación de tu pedido #${pedidoId}</h2>
+            <p>Gracias por tu compra en <strong>Techop</strong>.</p>
+            <p>Detalles de tu pedido:</p>
+            <table style="width: 100%; border-collapse: collapse;" border="1">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${productosHtml}
+                </tbody>
+            </table>
+            <p><strong>Total: ${total.toFixed(2)} €</strong></p>
+            <p>Recibirás una actualización cuando tu pedido esté en camino.</p>
+            <p>¡Gracias por confiar en nosotros!</p>
+        </div>
+    `;
+
+    const mailOptions = {
+        from: process.env.SMTP_USER,
+        to: email,
+        subject: `📦 Confirmación de tu pedido #${pedidoId} en Techop`,
+        html,
+    };
+
+    try {
+        const info = await transporter.sendMail(mailOptions);
+        console.log('📧 Confirmación de pedido enviada:', info.response);
+    } catch (error) {
+        console.error('❌ Error al enviar correo de confirmación:', error);
+        throw error;
+    }
+};
+
+
+module.exports = { sendWelcomeEmail, sendOrderConfirmationEmail };
