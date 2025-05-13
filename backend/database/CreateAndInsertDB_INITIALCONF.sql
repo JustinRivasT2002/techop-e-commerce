@@ -3,7 +3,7 @@ CREATE TABLE clientes (
     id INT IDENTITY(1,1) PRIMARY KEY,
     nombre VARCHAR(100),
     email VARCHAR(100) UNIQUE NOT NULL,
-    telefono VARCHAR(20),
+    telefono INT,
     direccion TEXT
 );
 
@@ -121,33 +121,33 @@ INSERT INTO categorias (nombre) VALUES
 
 
 -- Insertar 50 productos con datos de prueba
-INSERT INTO productos (nombre, descripcion, precio, categoria_id, stock, imagen) VALUES
-('Laptop Gamer ASUS', 'Potente laptop para gaming', 1500.00, 1, 10, 'https://example.com/images/laptop1.jpg'),
-('Tarjeta Gráfica RTX 4080', 'Gráfica de última generación', 1200.00, 2, 5, 'https://example.com/images/graphic1.jpg'),
-('Teclado Mecánico RGB', 'Teclado mecánico retroiluminado', 100.00, 3, 20, 'https://example.com/images/keyboard1.jpg'),
-('Monitor 4K Samsung', 'Monitor UHD de alta calidad', 300.00, 3, 15, 'https://example.com/images/monitor1.jpg'),
-('Mouse Gaming Logitech', 'Mouse ergonómico para gamers', 50.00, 3, 25, 'https://example.com/images/mouse1.jpg'),
-('Auriculares Sony WH-1000XM4', 'Auriculares inalámbricos con cancelación de ruido', 350.00, 3, 10, 'https://example.com/images/headphones1.jpg'),
-('SSD NVMe 1TB Samsung', 'Unidad de almacenamiento ultrarrápida', 200.00, 2, 30, 'https://example.com/images/ssd1.jpg'),
-('Laptop Dell XPS 15', 'Laptop premium para trabajo y entretenimiento', 1800.00, 1, 8, 'https://example.com/images/laptop2.jpg'),
-('Tarjeta Madre MSI Z690', 'Placa base de alto rendimiento', 250.00, 2, 12, 'https://example.com/images/motherboard1.jpg'),
-('Fuente de Poder EVGA 750W', 'Fuente de poder modular', 120.00, 2, 7, 'https://example.com/images/psu1.jpg'),
-('RAM Corsair Vengeance 32GB', 'Memoria RAM DDR4 de alta velocidad', 150.00, 2, 20, 'https://example.com/images/ram1.jpg'),
-('Gabinete NZXT H510', 'Gabinete para PC con diseño moderno', 100.00, 2, 5, 'https://example.com/images/case1.jpg'),
-('Portátil HP Envy 13', 'Portátil compacto y ligero', 1100.00, 1, 12, 'https://example.com/images/laptop3.jpg'),
-('Teclado Microsoft Surface', 'Teclado elegante y ligero', 150.00, 3, 17, 'https://example.com/images/keyboard2.jpg'),
-('Micrófono Blue Yeti', 'Micrófono USB profesional', 130.00, 3, 6, 'https://example.com/images/microphone1.jpg'),
-('Switch Cisco SG350', 'Switch gestionable de 24 puertos', 600.00, 2, 3, 'https://example.com/images/switch1.jpg'),
-('Cámara Web Logitech C920', 'Cámara HD para videoconferencias', 90.00, 3, 22, 'https://example.com/images/webcam1.jpg'),
-('Tablet Samsung Galaxy Tab S8', 'Tablet potente para entretenimiento', 700.00, 1, 4, 'https://example.com/images/tablet1.jpg'),
-('Impresora Epson EcoTank', 'Impresora con bajo consumo de tinta', 250.00, 3, 10, 'https://example.com/images/printer1.jpg'),
-('Disco Duro Externo 2TB', 'Almacenamiento portátil', 120.00, 3, 15, 'https://example.com/images/externalhdd1.jpg'),
+INSERT INTO productos (nombre, descripcion, precio, categoria_id, imagen) VALUES
+('Laptop Gamer ASUS', 'Potente laptop para gaming', 1500.00, 1, 'https://dlcdnwebimgs.asus.com/gain/1d7ff1ce-d5ed-4184-bbfa-2cee7150b1fc/w800'),
+('Tarjeta Gráfica RTX 4080', 'Gráfica de última generación', 1200.00, 2, 'https://img.pccomponentes.com/articles/1063/10639307/1957-msi-geforce-rtx-4080-ventus-3x-oc-16gb-gddr6x-mejor-precio.jpg'),
+('Teclado Mecánico RGB', 'Teclado mecánico retroiluminado', 100.00, 3, 'https://img.pccomponentes.com/articles/1042/10427803/1673-sharkoon-skiller-sgk60-teclado-mecanico-rgb-switch-brown.jpg'),
+('Monitor 4K Samsung', 'Monitor UHD de alta calidad', 300.00, 3, 'https://www.coolmod.com/images/product/large/samsung-u28r550uqu-28-uhd-4k-freesync-monitor-001.jpg'),
+('Mouse Gaming Logitech', 'Mouse ergonómico para gamers', 50.00, 3, 'https://img.pccomponentes.com/articles/28/287353/logitech-g203-lightsync-2nd-gen-raton-gaming-8000dpi-rgb-negro.jpg'),
+('Auriculares Sony WH-1000XM4', 'Auriculares inalámbricos con cancelación de ruido', 350.00, 3, 'https://img.pccomponentes.com/articles/1028/10285184/1650-sony-wh-1000xm4-auriculares-bluetooth-plata.jpg'),
+('SSD NVMe 1TB Samsung', 'Unidad de almacenamiento ultrarrápida', 200.00, 2, 'https://qloudea.com/39727-large_default/samsung-mz-v8v1t0bw.jpg'),
+('Laptop Dell XPS 15', 'Laptop premium para trabajo y entretenimiento', 1800.00, 1, 'https://img.pccomponentes.com/articles/1029/10294662/1565-dell-xps-15-9520-intel-core-i7-12700h-16gb-1tb-ssd-rtx3050-ti-156.jpg'),
+('Tarjeta Madre MSI Z690', 'Placa base de alto rendimiento', 250.00, 2, 'https://img.pccomponentes.com/articles/67/673217/1743-msi-pro-z690-a-wifi-ddr4.jpg'),
+('Fuente de Poder EVGA 750W', 'Fuente de poder modular', 120.00, 2, 'https://img.pccomponentes.com/articles/31/310518/1828-evga-750-b5-750w-80-plus-bronze-full-modular.jpg'),
+('RAM Corsair Vengeance 32GB', 'Memoria RAM DDR4 de alta velocidad', 150.00, 2, 'https://img.pccomponentes.com/articles/35/351295/1838-corsair-vengeance-rgb-pro-ddr4-3200-pc4-25600-32gb-2x16gb-cl16.jpg'),
+('Gabinete NZXT H510', 'Gabinete para PC con diseño moderno', 100.00, 2, 'https://www.coolmod.com/images/product/large/nzxt-h510-elite-cristal-templado-blanco-caja-torre-001.jpg'),
+('Portátil HP Envy 13', 'Portátil compacto y ligero', 1100.00, 1, 'https://img.pccomponentes.com/articles/16/166555/5.jpg'),
+('Teclado Microsoft Surface', 'Teclado elegante y ligero', 150.00, 3, 'https://img.pccomponentes.com/articles/1084/10844182/1310-microsoft-teclado-para-surface-pro-espanol-qwerty-negro.jpg'),
+('Micrófono Blue Yeti', 'Micrófono USB profesional', 130.00, 3, 'https://img.pccomponentes.com/articles/32/327983/1303-blue-microphones-yeti-microfono-usb-negro-para-grabacion-y-transmision-en-pc-ff09943e-ed13-4890-a4a4-fbe3750fbef9.jpg'),
+('Switch Cisco SG350', 'Switch gestionable de 24 puertos', 600.00, 2, 'https://img.pccomponentes.com/articles/40/401810/174-cisco-sg350-28p-switch-28-puertos-2-sfp.jpg'),
+('Cámara Web Logitech C920', 'Cámara HD para videoconferencias', 90.00, 3, 'https://img.pccomponentes.com/articles/27/278320/1475-logitech-streamcam-webcam-usb-c-full-hd-negra-comprar.jpg'),
+('Tablet Samsung Galaxy Tab S8', 'Tablet potente para entretenimiento', 700.00, 1, 'https://img.pccomponentes.com/articles/1051/10519758/1941-samsung-galaxy-tab-s8-ultra-5g-12-256-gb-gris.jpg'),
+('Impresora Epson EcoTank', 'Impresora con bajo consumo de tinta', 250.00, 3, 'https://img.pccomponentes.com/articles/1080/10803497/1246-epson-ecotank-et-2840-impresora-multifuncion-color-wifi-negra.jpg'),
+('Disco Duro Externo 2TB', 'Almacenamiento portátil', 120.00, 3, 'https://www.powerplanetonline.com/cdnassets/disco_duro_externo_2tb_western_digital_elements_2_5_usb_3_2_gen_1_01_l.jpg'),
 -- Continúa con los 30 productos restantes, asegurándote de variar las descripciones y categorías
-('Altavoz Bluetooth JBL', 'Altavoz portátil con excelente sonido', 150.00, 3, 18, 'https://example.com/images/speaker1.jpg'),
-('Procesador Intel Core i9', 'Procesador de alto rendimiento', 500.00, 2, 8, 'https://example.com/images/cpu1.jpg'),
-('Adaptador WiFi USB TP-Link', 'Conexión WiFi rápida y estable', 30.00, 3, 25, 'https://example.com/images/wifiadapter1.jpg'),
-('Consola Xbox Series X', 'Consola de videojuegos de última generación', 500.00, 3, 12, 'https://example.com/images/xbox1.jpg'),
-('Smartwatch Apple Watch Series 8', 'Reloj inteligente con múltiples funciones', 400.00, 3, 9, 'https://example.com/images/smartwatch1.jpg');
+('Altavoz Bluetooth JBL', 'Altavoz portátil con excelente sonido', 150.00, 3, 'https://visanta.com/67769-large_default/altavoz-bluetooth-jbl-flip-6-rojo.jpg'),
+('Procesador Intel Core i9', 'Procesador de alto rendimiento', 500.00, 2, 'https://cdn2.depau.es/articulos/800/800/fixed/art_itl-i9%2014900%202%2000ghz_1.jpg'),
+('Adaptador WiFi USB TP-Link', 'Conexión WiFi rápida y estable', 30.00, 3, 'https://sonicolor.es/57320-large_default/tp-link-tl-wn823n-adaptador-usb-wifi.jpg'),
+('Consola Xbox Series X', 'Consola de videojuegos de última generación', 500.00, 3, 'https://img.pccomponentes.com/articles/32/323078/1684-microsoft-xbox-series-x-1tb.jpg'),
+('Smartwatch Apple Watch Series 8', 'Reloj inteligente con múltiples funciones', 400.00, 3, 'https://img.pccomponentes.com/articles/1058/10581508/1936-apple-watch-series-8-gps-cellular-45mm-caja-de-aluminio-con-correa-deportiva-productred.jpg');
 
 -- Insertar datos de prueba en Métodos de Pago
 INSERT INTO metodos_pago (metodo) VALUES

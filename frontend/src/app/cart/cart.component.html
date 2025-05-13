@@ -78,6 +78,31 @@
       </div>
     </div>
 
+    <!-- Popup de confirmación antes de enviar la compra -->
+    <div class="popup" *ngIf="mostrarPopupConfirmacionBoleano">
+      <div class="popup-content">
+        <h2>🛒 Resumen del Pedido</h2>
+
+        <p><strong>📧 Email:</strong> {{ emailUsuario }}</p>
+        <p><strong>👤 Nombre:</strong> {{ nombreUsuario }}</p>
+        <p><strong>📞 Teléfono:</strong> {{ telefonoUsuario }}</p>
+        <p><strong>🏠 Dirección:</strong> {{ direccionUsuario }}</p>
+        <p><strong>💳 Método de Pago:</strong> {{ getNombreMetodoPago() }}</p>
+
+        <h3>🛍️ Productos:</h3>
+        <ul>
+          <li *ngFor="let producto of productosCarrito">
+            {{ producto.nombre }} (x{{ producto.cantidad }}) - {{ producto.precio * producto.cantidad | currency:'EUR' }}
+          </li>
+        </ul>
+
+        <p><strong>💰 Total a pagar:</strong> {{ totalCarrito | currency:'EUR' }}</p>
+
+        <button class="confirmar-btn" (click)="confirmarCompra()">Confirmar compra</button>
+        <button class="cancelar-btn" (click)="cerrarPopupConfirmacion()">Cancelar</button>
+      </div>
+    </div>
+
     <ng-template #vacio>
       <div class="carrito-vacio">
         <p>🛒 Tu carrito está vacío.</p>

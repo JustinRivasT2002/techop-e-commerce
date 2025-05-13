@@ -11,14 +11,19 @@ export class OrderService {
 
   constructor(private http: HttpClient) {}
 
-  realizarCompra(email: string, metodoPagoId: number): Observable<any> {
+  realizarCompra(email: string, nombre: string, telefono: Number, direccion: string, metodoPagoId: number): Observable<any> {
     const pedidoData = {
       email: email,
+      nombre: nombre,
+      telefono: Number(telefono),
+      direccion: direccion,
       total: this.calcularTotal(),
-      metodo_pago_id: metodoPagoId,
+      metodo_pago_id: Number(metodoPagoId),
       estado_envio_id: 1,
       detalles: this.obtenerDetalles()
     };
+
+    console.log('🛒 Enviando pedido al backend:', pedidoData);
 
     return this.http.post<any>(this.apiUrl, pedidoData);
   }

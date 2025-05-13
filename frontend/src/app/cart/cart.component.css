@@ -278,6 +278,16 @@ h2 {
   margin-bottom: 1rem;
 }
 
+.popup-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.popup-content li {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
 /* Estilos para etiquetas */
 .popup-content label {
   font-weight: bold;
@@ -368,6 +378,20 @@ h2 {
   font-weight: bold;
   margin-top: 0.3rem;
   text-align: left;
+}
+
+.cancelar-btn {
+  background-color: #ccc;
+  color: black;
+  font-weight: bold;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancelar-btn:hover {
+  background-color: #999;
 }
 
 /* Eliminar flechas del input de teléfono */

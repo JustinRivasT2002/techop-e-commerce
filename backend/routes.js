@@ -4,7 +4,8 @@ const {
   getProductos,
   getProductoById,
   getMetodosPago,
-  registrarCliente
+  registrarCliente,
+  crearPedido
 } = require('./database/db');
 const { sendWelcomeEmail } = require('./services/mail_SMTP');
 

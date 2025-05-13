@@ -122,10 +122,12 @@ const crearPedido = async (pedidoData) => {
 
     // Verificar stock antes de cualquier otra operación
     for (const item of pedidoData.detalles) {
-      request.input('producto_id', sql.Int, item.producto_id);
-      request.input('cantidad', sql.Int, item.cantidad);
+      const stockRequest = new sql.Request();
 
-      const stockResult = await request.query(`
+      stockRequest.input('producto_id', sql.Int, item.producto_id);
+      stockRequest.input('cantidad', sql.Int, item.cantidad);
+
+       const stockResult = await stockRequest.query(`
         SELECT cantidad FROM inventarios WHERE producto_id = @producto_id
       `);
 
@@ -136,10 +138,15 @@ const crearPedido = async (pedidoData) => {
       }
     }
 
-    // Verificar si el cliente existe por su email
+    // Datos personales del cliente
     request.input('email', sql.VarChar, pedidoData.email);
+    request.input('nombre', sql.VarChar, pedidoData.nombre);
+    request.input('telefono', sql.Int, pedidoData.telefono);
+    request.input('direccion', sql.VarChar, pedidoData.direccion);
+
+    // Verificar si el cliente existe por su email
     let clienteResult = await request.query(`
-      SELECT id FROM clientes WHERE email = @email
+      SELECT id, nombre, telefono, direccion FROM clientes WHERE email = @email
     `);
 
     let clienteId;
@@ -150,12 +157,21 @@ const crearPedido = async (pedidoData) => {
 
       await request.query(`
         INSERT INTO clientes (email, nombre, telefono, direccion)
-        VALUES (@email, NULL, NULL, NULL)
+        VALUES (@email, @nombre, @telefono, @direccion)
       `);
 
       // Obtener el nuevo cliente registrado
       clienteResult = await request.query(`
         SELECT id FROM clientes WHERE email = @email
+      `);
+    }  else {
+      // Si el cliente ya existe, actualizamos sus datos (excepto el email)
+      console.log(`🔄 Cliente existente encontrado. Actualizando datos...`);
+
+      await request.query(`
+        UPDATE clientes
+        SET nombre = @nombre, telefono = @telefono, direccion = @direccion
+        WHERE email = @email
       `);
     }
 
@@ -176,13 +192,9 @@ const crearPedido = async (pedidoData) => {
 
     // Insertar los productos en detalles_pedido
     for (const item of pedidoData.detalles) {
-      request.input('producto_id', sql.Int, item.producto_id);
-      request.input('cantidad', sql.Int, item.cantidad);
-      request.input('precio_unitario', sql.Decimal(10,2), item.precio_unitario);
-
-      await request.query(`
+      await new sql.Request().query(`
         INSERT INTO detalles_pedido (pedido_id, producto_id, cantidad, precio_unitario)
-        VALUES (${pedidoId}, @producto_id, @cantidad, @precio_unitario)
+        VALUES (${pedidoId}, ${item.producto_id}, ${item.cantidad}, ${item.precio_unitario})
       `);
     }
 

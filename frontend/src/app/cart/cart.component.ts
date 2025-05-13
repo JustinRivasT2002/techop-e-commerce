@@ -2,6 +2,7 @@ import { ProductoEnCarrito } from './../interfaces/productoEnCarrito';
 import { Component } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { MetodoPagoService } from '../services/metodoPago.service';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -14,16 +15,17 @@ export class CartComponent {
   productosCarrito: ProductoEnCarrito[] = [];
   mostrarResumen = false;
   intentoEnvio = false;
+  mostrarPopupConfirmacionBoleano = false;
 
   // Datos del cliente
   emailUsuario = '';
   nombreUsuario = '';
-  telefonoUsuario = '';
+  telefonoUsuario: number | null = null;
   direccionUsuario = '';
   metodoPagoId: number | null = null;
   metodosPago: { id: number; nombre: string }[] = [];
 
-  constructor(private cartService: CartService, private metodoPagoService: MetodoPagoService) {}
+  constructor(private cartService: CartService, private metodoPagoService: MetodoPagoService, private orderService: OrderService) {}
 
   ngOnInit() {
     const carrito = this.cartService.obtenerCarrito();
@@ -36,7 +38,7 @@ export class CartComponent {
       (metodos) => {
         this.metodosPago = metodos;
       },
-      (error) => {
+      (error: any) => {
         console.error('❌ Error al obtener métodos de pago:', error);
       }
     );
@@ -49,6 +51,17 @@ export class CartComponent {
 
   cerrarPopup() {
     this.mostrarResumen = false;
+  }
+
+  mostrarPopupConfirmacion() {
+    if (!this.validarCampos()) {
+      return;
+    }
+    this.mostrarPopupConfirmacionBoleano = true;
+  }
+
+  cerrarPopupConfirmacion() {
+    this.mostrarPopupConfirmacionBoleano = false;
   }
 
   aumentar(id: number) {
@@ -66,8 +79,22 @@ export class CartComponent {
   }
 
   validarTelefono(): boolean {
-    return /^(?:\+34|0034|34)?[6789]\d{8}$/.test(this.telefonoUsuario);
+    return /^(?:\+34|0034|34)?[6789]\d{8}$/.test(this.telefonoUsuario?.toString() || '');
   }
+
+  getNombreMetodoPago(): string {
+  if (this.metodoPagoId === null) {
+    return 'No seleccionado';
+  }
+
+  for (const metodo of this.metodosPago) {
+    if (metodo.id == this.metodoPagoId) {
+      return metodo.nombre;
+    }
+  }
+
+  return 'No seleccionado';
+}
 
   validarCampos(): boolean {
     this.intentoEnvio = true;
@@ -87,17 +114,32 @@ export class CartComponent {
     return true;
   }
 
-  finalizarCompra() {
-  if (!this.validarCampos()) {
-    return;
+  confirmarCompra() {
+    this.orderService.realizarCompra(
+      this.emailUsuario,
+      this.nombreUsuario,
+      this.telefonoUsuario!,
+      this.direccionUsuario,
+      this.metodoPagoId!
+    ).subscribe(
+      (response: any) => {
+        console.log('✅ Pedido realizado con éxito:', response);
+        alert(`✅ Compra realizada con éxito. Te enviaremos un correo con los detalles de tu pedido.`);
+        this.cartService.vaciarCarrito();
+        this.cerrarPopup();
+        this.cerrarPopupConfirmacion();
+        this.limpiarDatosUsuario();
+      },
+      (error: any) => {
+        console.error('❌ Error al realizar la compra:', error);
+        alert('❌ Error al procesar la compra. Intenta nuevamente.');
+      }
+    );
   }
 
-  alert(`✅ Compra lista para procesar. Total: ${this.totalCarrito.toFixed(2)} €`);
-
-  this.cartService.vaciarCarrito();
-  this.cerrarPopup();
-  this.limpiarDatosUsuario();
-}
+  finalizarCompra() {
+    this.mostrarPopupConfirmacion();
+  }
 
   get totalCarrito(): number {
     return this.productosCarrito.reduce((total, producto) => {
@@ -114,7 +156,7 @@ export class CartComponent {
     this.productosCarrito = [];
     this.emailUsuario = '';
     this.nombreUsuario = '';
-    this.telefonoUsuario = '';
+    this.telefonoUsuario = null;
     this.direccionUsuario = '';
     this.metodoPagoId = null;
   }

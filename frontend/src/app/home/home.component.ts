@@ -10,19 +10,19 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   currentYear: number = new Date().getFullYear();
   texts: string[] = [
-    "Welcome To Techop store",
-    "here you will find everything you need to be at the forefront of technology",
-    "a space for component lovers",
-    "computers",
-    "towers",
-    "and much more"
+    "Bienvenidos a la tienda Techop",
+    "aquí encontrarás todo lo que necesitas para estar a la vanguardia de la tecnología",
+    "un espacio para los amantes de los componentes",
+    "ordenadores",
+    "torres",
+    "y mucho más"
   ];
   index: number = 0;
 
   ngOnInit(): void {
     // Inicializa la animación del texto
     this.animateText();
-    setInterval(() => this.animateText(), 3000); // Cambia el texto cada 3 segundos
+    setInterval(() => this.animateText(), 3000);
   }
 
   animateText(): void {

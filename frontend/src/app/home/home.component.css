@@ -1,11 +1,11 @@
-/* home.component.css */
-/* Resetear márgenes y paddings */
+/* ======== Reset global ========== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ======== Fuente personalizada ========== */
 @font-face {
   font-family: 'BasisGrotesque';
   src: url('../../assets/fonts/BasisGrotesqueArabicPro-Light.woff2') format('woff2');
@@ -13,6 +13,7 @@
   font-style: normal;
 }
 
+/* ======== Contenedor general de página ========== */
 .page-content {
   display: flex;
   flex-direction: column;
@@ -29,13 +30,13 @@
   min-height: 100vh;
 }
 
-/* Contenedor del video */
+/* ======== VIDEO DE FONDO ========== */
 .video-container {
-  position: fixed; /* Hace que ocupe toda la ventana */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100vw; /* Ancho total de la pantalla */
-  height: 100vh; /* Alto total de la pantalla */
+  width: 100vw;
+  height: 100vh;
   z-index: -1; /* Coloca el video detrás del contenido */
 }
 
@@ -46,7 +47,7 @@
   object-fit: cover; /* Asegura que el video cubra todo el espacio */
 }
 
-/* Contenido encima del video */
+/* ======== CONTENIDO PRINCIPAL (texto dinámico) ========== */
 .content {
   flex: 1;
   display: flex;
@@ -59,13 +60,15 @@
   z-index: 2;
 }
 
+/* Estilo individual de cada letra animada */
 .content span {
-  display: inline-block; /* Necesario para animar cada letra */
-  opacity: 0; /* Inicialmente invisible */
-  transform: translateY(-100%); /* Empieza desde arriba */
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(-100%);
   animation: slideIn 1s forwards;
 }
 
+/* Animación para las letras */
 @keyframes slideIn {
   0% {
     opacity: 0;
@@ -77,10 +80,10 @@
   }
 }
 
-/* Estilos para el navbar */
+/* ======== NAVBAR ========== */
 .navbar {
   font-family:'BasisGrotesque' , sans-serif;
-  position: fixed; /* Fija el navbar en la parte superior */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -92,6 +95,7 @@
   z-index: 1000; /* Asegura que el navbar esté por encima del video */
 }
 
+/* Logo de la marca */
 .navbar-brand a{
   text-transform: uppercase;
   text-decoration: none;
@@ -106,6 +110,7 @@
   color: #00fffc;
 }
 
+/* Links del navbar */
 .navbar-links {
   list-style: none;
   display: flex;
@@ -136,25 +141,40 @@
   color: #00fffc;
 }
 
+/* ======== RESPONSIVE NAVBAR ========== */
 @media screen and (max-height: 300px){
   .navbar-links ul {
     margin-top: 40px;
   }
 }
 
-/* Estilos responsivos */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
   }
 
   .navbar-links {
     flex-direction: column;
     gap: 0.5rem;
   }
+
+  .content[_ngcontent-ng-c681850442] {
+    margin-top: 25rem;
+    font-size: 4vw;
+  }
 }
 
+@media (max-width: 480px) {
+  .content {
+    font-size: 6vw;
+    padding: 1rem;
+    text-align: center;
+  }
+}
+
+/* ======== FOOTER ========== */
 .footer {
   background: transparent;
   color: white;
@@ -198,6 +218,7 @@
   color: #00fffc;
 }
 
+/* Métodos de pago */
 .payment-methods {
   display: flex;
   flex-wrap: wrap;
@@ -214,6 +235,7 @@
   transform: scale(1.1);
 }
 
+/* Footer inferior */
 .footer-bottom {
   text-align: center;
   margin-top: 2rem;
