@@ -12,25 +12,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
-  currentYear: number = new Date().getFullYear();
-  producto: Producto | null = null; // Producto actual
-  nuevaDescripcion: string = ''; // Descripción personalizada del producto
+  currentYear: number = new Date().getFullYear(); // Año actual, mostrado en el footer
+  producto: Producto | null = null; // Producto que se mostrará en detalle
+  nuevaDescripcion: string = ''; // Descripción personalizada para algunos productos
 
   constructor(
-    private ruta: ActivatedRoute, // Ruta activa para obtener parámetros
-    private productoServicio: ProductService, // Servicio del producto
-    private cartService: CartService,
-    private router: Router
+    private ruta: ActivatedRoute, // Permite acceder a los parámetros de la URL
+    private productoServicio: ProductService, // Servicio para obtener producto por ID
+    private cartService: CartService, // Servicio del carrito para agregar productos
+    private router: Router // Para redirigir al usuario
   ) {}
 
   ngOnInit() {
-    const idProducto = this.ruta.snapshot.paramMap.get('id'); // Obtener el ID de la URL
+    const idProducto = this.ruta.snapshot.paramMap.get('id'); // Obtener el ID del producto desde la URL
     if (idProducto) {
       this.productoServicio.getProductoById(Number(idProducto)).subscribe(
         (producto) => {
-          this.producto = producto; // Asignar el producto encontrado
+          this.producto = producto; // Asignar el producto recibido
           console.log('producto: ', this.producto)
-          this.asignarDescripcionPersonalizada(Number(idProducto)); // Llamar a la función para asignar descripción personalizada
+          this.asignarDescripcionPersonalizada(Number(idProducto)); // Generar descripción personalizada
         },
         (error) => {
           console.error('Error al obtener el producto:', error);
@@ -39,6 +39,7 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
+  // Asignar una descripción específica según el ID del producto
   asignarDescripcionPersonalizada(idProducto: number) {
     switch (idProducto) {
       case 1:
@@ -51,11 +52,12 @@ export class ProductDetailComponent implements OnInit {
         this.nuevaDescripcion = 'Teclado mecánico con iluminación RGB personalizable para una experiencia única.';
         break;
       default:
-        this.nuevaDescripcion = this.producto?.descripcion || 'Descripción no disponible';
+        this.nuevaDescripcion = this.producto?.descripcion || 'Descripción no disponible'; // Usar la descripción original si no se encuentra un caso personalizado
         break;
     }
   }
 
+  // Agregar el producto actual al carrito de compras
   anadirAlCarrito() {
     if (this.producto) {
       this.cartService.agregarAlCarrito(this.producto);
@@ -63,6 +65,7 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
+   // Agregar al carrito y redirigir al usuario a la vista del carrito
   comprarAhora() {
     if (this.producto) {
       this.cartService.agregarAlCarrito(this.producto);

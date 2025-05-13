@@ -1,29 +1,40 @@
 <main>
+  <!-- Barra de navegación fija en la parte superior -->
   <nav class="navbar">
+    <!-- Enlace al inicio -->
     <div class="navbar-brand"><a routerLink="/">Techop</a></div>
     <ul class="navbar-links">
+      <!-- Enlaces de navegación -->
       <li><a routerLink="/about-us">Sobre Nosotros</a></li>
       <li><a routerLink="/products">Productos</a></li>
       <li><a routerLink="/account">Cuenta</a></li>
       <li><a routerLink="/cart">Carrito de Compra</a></li>
     </ul>
   </nav>
+
+   <!-- Título principal con animación -->
   <h1>About us</h1>
 
+  <!-- Slider animado con logos de marcas -->
   <div class="slider" [ngStyle]="{
     '--width': '100px',
     '--height': '50px',
     '--quantity': '10'
   }">
     <div class="list">
+       <!-- Recorremos los logos y los posicionamos dinámicamente -->
       <div class="item" *ngFor="let logo of logos; let i = index" [ngStyle]="{'--position': i + 1}">
         <img [src]="logo.src" [alt]="logo.alt">
       </div>
     </div>
   </div>
 
+   <!-- Sección de presentación de la tienda -->
   <div class="techop-container">
+    <!-- Imagen de la tienda -->
     <img class="techop" src="assets/img/Techop-about-us.png" alt="Techop About Us">
+
+    <!-- Texto descriptivo sobre Techop -->
     <div class="text-container">
       <p class="description">
         En Techop, la tecnología no es solo nuestro negocio, es nuestra pasión. Nacimos con la visión de ofrecer lo mejor en innovación, rendimiento y calidad a entusiastas,
@@ -39,8 +50,10 @@
     </div>
   </div>
 
+  <!-- Pie de página con enlaces y métodos de pago -->
   <footer class="footer">
     <div class="footer-content">
+      <!-- Columna 1: Navegación -->
       <div class="footer-column">
         <h4>Techop</h4>
         <ul>
@@ -51,6 +64,7 @@
         </ul>
       </div>
 
+      <!-- Columna 2: Atención al cliente -->
       <div class="footer-column">
         <h4>Atención al Cliente</h4>
         <ul>
@@ -61,6 +75,7 @@
         </ul>
       </div>
 
+      <!-- Columna 3: Métodos de pago -->
       <div class="footer-column">
         <h4>Métodos de Pago</h4>
         <div class="payment-methods">
@@ -72,6 +87,7 @@
       </div>
     </div>
 
+    <!-- Parte inferior del footer con copyright -->
     <div class="footer-bottom">
       <p>&copy; {{ currentYear }} Techop E-commerce. Todos los derechos reservados.</p>
     </div>

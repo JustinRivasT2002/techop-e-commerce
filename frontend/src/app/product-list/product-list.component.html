@@ -1,3 +1,4 @@
+<!-- Barra de navegación superior con enlaces de ruta -->
 <nav class="navbar">
   <div class="navbar-brand"><a routerLink="/">Techop</a></div>
   <ul class="navbar-links">
@@ -9,20 +10,24 @@
 </nav>
 
 <body>
+  <!-- Campo de filtro para buscar productos por nombre -->
   <div class="filtro-container">
     <input type="text" [(ngModel)]="filtro" placeholder="Buscar producto..." />
   </div>
 
+  <!-- Contenedor principal de los productos -->
   <div class="productos-container">
+    <!-- Iteración sobre productos filtrados -->
     <div *ngFor="let producto of productosFiltrados()" class="producto">
       <img [src]="producto.imagen" [alt]="producto.nombre" />
       <h2>{{ producto.nombre }}</h2>
       <p>{{ producto.descripcion }}</p>
-      <button (click)="comprar(producto)">Comprar</button>
+      <button (click)="comprar(producto)">Comprar</button> <!-- Botón que lleva al detalle del producto -->
     </div>
   </div>
 </body>
 
+<!-- Pie de página con enlaces, atención al cliente y métodos de pago -->
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-column">

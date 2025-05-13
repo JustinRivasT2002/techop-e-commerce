@@ -401,3 +401,57 @@ input[type="number"][inputmode="numeric"]::-webkit-inner-spin-button {
   margin: 0;
 }
 
+@media (max-width: 992px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    position: relative;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+    padding-top: 1rem;
+  }
+
+  .navbar-links a {
+    padding: 10px 0;
+    display: block;
+  }
+
+  .carrito {
+    width: 300px;
+  }
+
+  .popup[_ngcontent-ng-c589122112] {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 300px;
+    text-align: center;
+    font-family: "BasisGrotesque", sans-serif;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .footer-column {
+    text-align: center;
+  }
+
+  .payment-methods {
+    justify-content: center;
+  }
+}

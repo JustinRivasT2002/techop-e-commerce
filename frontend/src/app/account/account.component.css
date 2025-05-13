@@ -1,3 +1,4 @@
+/* Fuente personalizada */
 @font-face {
   font-family: 'BasisGrotesque';
   src: url('../../assets/fonts/BasisGrotesqueArabicPro-Light.woff2') format('woff2');
@@ -5,6 +6,7 @@
   font-style: normal;
 }
 
+/* Estilos base para todos los elementos */
 * {
   margin: 0;
   padding: 0;
@@ -12,6 +14,7 @@
   font-family: 'BasisGrotesque';
 }
 
+/* -------------------- NAVBAR -------------------- */
 .navbar {
   position: absolute;
   top: 0;
@@ -31,7 +34,6 @@
   letter-spacing: 0.15em;
   display: inline-block;
   padding: 15px 0;
-  position: relative;
 }
 
 .navbar-brand a:hover {
@@ -42,14 +44,6 @@
   list-style: none;
   display: flex;
   gap: 1.5rem;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar-links li {
-  display: table-cell;
-  position: relative;
-  padding: 15px 0;
 }
 
 .navbar-links a {
@@ -57,15 +51,14 @@
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 0.15em;
-  display: inline-block;
   padding: 15px 20px;
-  position: relative;
 }
 
 .navbar-links a:hover {
   color: #00fffc;
 }
 
+/* -------------------- BODY Y WRAPPER -------------------- */
 body {
   display: flex;
   justify-content: center;
@@ -81,6 +74,7 @@ body {
   height: 500px;
 }
 
+/* -------------------- FORMULARIOS -------------------- */
 .form-wrapper {
   position: absolute;
   top: 0;
@@ -94,6 +88,7 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, .2);
 }
 
+/* Animaciones para alternar entre login y registro */
 .wrapper.animate-signUp .form-wrapper.sign-in {
   transform: rotate(7deg);
   animation: animateRotate .7s ease-in-out forwards;
@@ -102,18 +97,6 @@ body {
 
 .wrapper.animate-signIn .form-wrapper.sign-in {
   animation: animateSignIn 1.5s ease-in-out forwards;
-}
-
-@keyframes animateSignIn {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-500px);
-  }
-  100% {
-    transform: translateX(0) rotate(7deg);
-  }
 }
 
 .wrapper .form-wrapper.sign-up {
@@ -125,33 +108,29 @@ body {
   animation-delay: .3s;
 }
 
-@keyframes animateRotate {
-  0% {
-    transform: rotate(7deg);
-  }
-  100% {
-    transform: rotate(0);
-    z-index: 1;
-  }
-}
-
 .wrapper.animate-signUp .form-wrapper.sign-up {
   animation: animateSignUp 1.5s ease-in-out forwards;
 }
 
-@keyframes animateSignUp {
-  0% {
-    transform: translateX(0);
-    z-index: 1;
-  }
-  50% {
-    transform: translateX(500px);
-  }
-  100% {
-    transform: translateX(0) rotate(7deg);
-  }
+/* Keyframes */
+@keyframes animateSignIn {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-500px); }
+  100% { transform: translateX(0) rotate(7deg); }
 }
 
+@keyframes animateRotate {
+  0% { transform: rotate(7deg); }
+  100% { transform: rotate(0); z-index: 1; }
+}
+
+@keyframes animateSignUp {
+  0% { transform: translateX(0); z-index: 1; }
+  50% { transform: translateX(500px); }
+  100% { transform: translateX(0) rotate(7deg); }
+}
+
+/* -------------------- CAMPOS Y BOTONES -------------------- */
 h2 {
   font-size: 30px;
   color: #555;
@@ -162,6 +141,18 @@ h2 {
   position: relative;
   width: 320px;
   margin: 30px 0;
+}
+
+.input-group input {
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  padding: 0 10px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background: transparent;
+  color: #333;
+  outline: none;
 }
 
 .input-group label {
@@ -176,35 +167,22 @@ h2 {
   transition: .5s;
 }
 
-
-.input-group input {
-  width: 100%;
-  height: 40px;
-  font-size: 16px;
-  color: #333;
-  padding: 0 10px;
-  background: transparent;
-  border: 1px solid #333;
-  outline: none;
-  border-radius: 5px;
-}
-
-.input-group input:focus~label,
-.input-group input:valid~label {
+/* Animación del label al escribir */
+.input-group input:focus ~ label,
+.input-group input:valid ~ label {
   top: 0;
   font-size: 12px;
   background: #fff;
 }
 
+/* Enlace "¿olvidaste tu contraseña?" */
 .forgot-pass {
   margin: -15px 0 15px;
   font-size: 14px;
-  text-decoration: none;
 }
 
-.forgot-pass a{
+.forgot-pass a {
   color: #333;
-  font-size: 14px;
   text-decoration: none;
 }
 
@@ -212,22 +190,22 @@ h2 {
   text-decoration: underline;
 }
 
+/* Botón general */
 .btn {
   width: 100%;
   color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: linear-gradient(to right, #2196f3, #e91e63);
   box-shadow: 0 2px 10px rgba(0, 0, 0, .4);
   font-size: 16px;
   gap: 10px;
   padding: 10px;
   font-weight: 500;
-  cursor: pointer;
   border-radius: 5px;
   border: none;
-  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s ease-in-out;
 }
 
@@ -244,41 +222,38 @@ h2 {
   background-color: #f5f5f5;
 }
 
+/* Enlace para cambiar entre login y registro */
 .sign-link {
   font-size: 14px;
   text-align: center;
   margin: 25px 0;
 }
 
-.sign-link p {
-  color: #333;
-}
-
-.sign-link p a {
+.sign-link a {
   color: #e91e63;
-  text-decoration: none;
   font-weight: 600;
+  text-decoration: none;
 }
 
-.sign-link p a:hover {
+.sign-link a:hover {
   text-decoration: underline;
 }
 
+/* Mensaje de error flotante */
 .error-message {
   background: linear-gradient(to right, #2196f3, #e91e63);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, .4);
   color: white;
   padding: 10px;
   border-radius: 5px;
-  text-align: center;
   position: absolute;
   top: -15px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
-  transition: opacity 0.5s ease-in-out;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
+/* Animación de aparición de mensaje */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -290,11 +265,11 @@ h2 {
   }
 }
 
+/* -------------------- FOOTER -------------------- */
 .footer {
   background-color: #1e3c72;
   color: white;
   padding: 3rem 2rem 1rem 2rem;
-  font-family: 'BasisGrotesque', sans-serif;
 }
 
 .footer-content {
@@ -310,7 +285,6 @@ h2 {
   margin-bottom: 1rem;
   font-size: 1.2rem;
   border-bottom: 2px solid #00fffc;
-  display: inline-block;
   padding-bottom: 0.5rem;
 }
 
@@ -319,17 +293,17 @@ h2 {
   padding: 0;
 }
 
-.footer-column ul li {
+.footer-column li {
   margin-bottom: 0.5rem;
 }
 
-.footer-column ul li a {
-  text-decoration: none;
+.footer-column a {
   color: white;
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.footer-column ul li a:hover {
+.footer-column a:hover {
   color: #00fffc;
 }
 
@@ -355,4 +329,36 @@ h2 {
   font-size: 0.9rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding-top: 1rem;
+}
+
+/* -------------------- RESPONSIVE DESIGN -------------------- */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    position: relative;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+    padding-top: 1rem;
+  }
+
+  .navbar-links a {
+    padding: 10px 0;
+    display: block;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .payment-methods {
+    justify-content: center;
+  }
 }

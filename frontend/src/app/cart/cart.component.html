@@ -1,4 +1,4 @@
-<!-- Navbar -->
+<!-- Navbar principal de navegación -->
 <nav class="navbar">
   <div class="navbar-brand">
     <a routerLink="/">Techop</a>
@@ -13,15 +13,20 @@
 
 <body>
   <div class="carrito-container">
-    <h2>Carrito de Compra</h2>
+    <h2>Carrito de Compra</h2> <!-- Título principal del carrito -->
 
+    <!-- Si hay productos en el carrito, se muestran -->
     <div *ngIf="productosCarrito && productosCarrito.length > 0; else vacio">
+       <!-- Recorre y muestra cada producto en el carrito -->
       <div *ngFor="let producto of productosCarrito" class="producto-carrito">
+        <!-- Imagen del producto si existe -->
         <img *ngIf="producto.imagen" [src]="producto.imagen" [alt]="producto.nombre || 'Producto'" class="producto-img" />
 
         <div class="producto-info">
+          <!-- Nombre del producto -->
           <h3>{{ producto.nombre || 'Sin nombre' }}</h3>
 
+          <!-- Controles para aumentar o disminuir la cantidad -->
           <div class="cantidad-control">
             <button (click)="reducir(producto.id)">−</button>
             <span>{{ producto.cantidad }}</span>
@@ -29,66 +34,77 @@
           </div>
         </div>
 
+        <!-- Precio total del producto (precio * cantidad) -->
         <div class="producto-precio">
           <p><strong>{{ (producto.precio * producto.cantidad) | currency:'EUR' }}</strong></p>
         </div>
       </div>
 
+       <!-- Total del carrito -->
       <div class="total-carrito">
         <p><strong>Total:</strong> {{ totalCarrito | currency:'EUR' }}</p>
       </div>
 
-      <!-- Botón para finalizar compra -->
+      <!-- Botón para continuar con la compra -->
       <button class="finalizar-btn" (click)="mostrarPopup()">Continuar</button>
     </div>
 
-    <!-- Popup de confirmación -->
+    <!-- Primer popup: formulario de datos del usuario -->
     <div class="popup" *ngIf="mostrarResumen">
       <div class="popup-content">
         <h2>Confirmar Compra</h2>
 
+        <!-- Campo nombre -->
         <label>Nombre Completo:</label>
         <input type="text" [(ngModel)]="nombreUsuario">
         <p *ngIf="intentoEnvio && !nombreUsuario" class="error-msg">⚠️ Este campo es obligatorio.</p>
 
+        <!-- Campo email -->
         <label>Email:</label>
         <input type="email" [(ngModel)]="emailUsuario" required>
         <p *ngIf="intentoEnvio && !emailUsuario" class="error-msg">⚠️ Este campo es obligatorio.</p>
         <p *ngIf="intentoEnvio && emailUsuario && !validarEmail()" class="error-msg">⚠️ Introduce un correo válido.</p>
 
+        <!-- Campo teléfono -->
         <label>Teléfono:</label>
         <input type="number" [(ngModel)]="telefonoUsuario" inputmode="numeric" pattern="[0-9]*">
         <p *ngIf="intentoEnvio && !telefonoUsuario" class="error-msg">⚠️ Este campo es obligatorio.</p>
         <p *ngIf="intentoEnvio && telefonoUsuario && !validarTelefono()" class="error-msg">⚠️ Introduce un número de teléfono válido.</p>
 
+         <!-- Campo dirección -->
         <label>Dirección:</label>
         <input type="text" [(ngModel)]="direccionUsuario">
         <p *ngIf="intentoEnvio && !direccionUsuario" class="error-msg">⚠️ Este campo es obligatorio.</p>
 
+        <!-- Selección de método de pago -->
         <label>Método de Pago:</label>
         <select [(ngModel)]="metodoPagoId">
           <option *ngFor="let metodo of metodosPago" [value]="metodo.id">{{ metodo.nombre }}</option>
         </select>
         <p *ngIf="intentoEnvio && !metodoPagoId" class="error-msg">⚠️ Debes seleccionar un método de pago.</p>
 
+        <!-- Total a pagar -->
         <p><strong>Total a pagar:</strong> {{ totalCarrito | currency:'EUR' }}</p>
 
+        <!-- Botones para finalizar o cancelar -->
         <button class="finalizar-btn" (click)="finalizarCompra()">Finalizar compra</button>
         <button class="confirmar-btn" (click)="cerrarPopup()">Cancelar</button>
       </div>
     </div>
 
-    <!-- Popup de confirmación antes de enviar la compra -->
+    <!-- Segundo popup: resumen antes de confirmar -->
     <div class="popup" *ngIf="mostrarPopupConfirmacionBoleano">
       <div class="popup-content">
         <h2>🛒 Resumen del Pedido</h2>
 
+        <!-- Información ingresada por el usuario -->
         <p><strong>📧 Email:</strong> {{ emailUsuario }}</p>
         <p><strong>👤 Nombre:</strong> {{ nombreUsuario }}</p>
         <p><strong>📞 Teléfono:</strong> {{ telefonoUsuario }}</p>
         <p><strong>🏠 Dirección:</strong> {{ direccionUsuario }}</p>
         <p><strong>💳 Método de Pago:</strong> {{ getNombreMetodoPago() }}</p>
 
+        <!-- Listado de productos del carrito -->
         <h3>🛍️ Productos:</h3>
         <ul>
           <li *ngFor="let producto of productosCarrito">
@@ -96,13 +112,16 @@
           </li>
         </ul>
 
+        <!-- Total final -->
         <p><strong>💰 Total a pagar:</strong> {{ totalCarrito | currency:'EUR' }}</p>
 
+        <!-- Botones para confirmar o cancelar -->
         <button class="confirmar-btn" (click)="confirmarCompra()">Confirmar compra</button>
         <button class="cancelar-btn" (click)="cerrarPopupConfirmacion()">Cancelar</button>
       </div>
     </div>
 
+    <!-- Mensaje alternativo si el carrito está vacío -->
     <ng-template #vacio>
       <div class="carrito-vacio">
         <p>🛒 Tu carrito está vacío.</p>
@@ -112,6 +131,7 @@
   </div>
 </body>
 
+<!-- Footer con enlaces útiles y métodos de pago -->
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-column">

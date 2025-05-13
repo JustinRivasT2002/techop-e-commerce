@@ -7,20 +7,20 @@ import { ProductoEnCarrito } from '../interfaces/productoEnCarrito';
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = 'http://localhost:3000/create-order';
+  private apiUrl = 'http://localhost:3000/create-order'; // URL del endpoint para crear pedidos
 
   constructor(private http: HttpClient) {}
 
   realizarCompra(email: string, nombre: string, telefono: Number, direccion: string, metodoPagoId: number): Observable<any> {
     const pedidoData = {
-      email: email,
-      nombre: nombre,
-      telefono: Number(telefono),
-      direccion: direccion,
-      total: this.calcularTotal(),
-      metodo_pago_id: Number(metodoPagoId),
-      estado_envio_id: 1,
-      detalles: this.obtenerDetalles()
+      email: email, // Email del cliente
+      nombre: nombre, // Nombre del cliente
+      telefono: Number(telefono), // Teléfono del cliente
+      direccion: direccion, // Dirección de envío
+      total: this.calcularTotal(), // Total del pedido
+      metodo_pago_id: Number(metodoPagoId), // ID del método de pago seleccionado
+      estado_envio_id: 1, // Estado de envío inicial (por defecto Pendiente)
+      detalles: this.obtenerDetalles() // Lista de productos del carrito
     };
 
     console.log('🛒 Enviando pedido al backend:', pedidoData);
@@ -28,6 +28,7 @@ export class OrderService {
     return this.http.post<any>(this.apiUrl, pedidoData);
   }
 
+  // Obtener detalles del pedido desde localstorage
   private obtenerDetalles(): ProductoEnCarrito[] {
     const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
     return carrito.map((producto: ProductoEnCarrito) => ({
@@ -37,6 +38,7 @@ export class OrderService {
     }));
   }
 
+  // Calcula el total del pedido
   private calcularTotal(): number {
     const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
     return carrito.reduce((total: number, producto: ProductoEnCarrito) => total + (producto.precio * producto.cantidad), 0);

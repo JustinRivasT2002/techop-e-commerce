@@ -7,10 +7,10 @@ import { Producto } from '../interfaces/producto.interfaces';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:3000/productos';
-
+  private apiUrl = 'http://localhost:3000/productos'; // URL del endpoint para obtener productos
   constructor(private http: HttpClient) {}
 
+  // Obtener la lista de productos
   getProductos(): Observable<Producto[]> {
     return this.http.get<Producto[]>(this.apiUrl);
   }

@@ -1,3 +1,4 @@
+<!-- Barra de navegación principal -->
 <nav class="navbar">
   <div class="navbar-brand"><a routerLink="/">Techop</a></div>
   <ul class="navbar-links">
@@ -10,59 +11,84 @@
 
 <body>
   <div class="wrapper">
-    <!-- Formulario Sign Up -->
+    <!-- Formulario de registro -->
     <div class="form-wrapper sign-up">
       <form (ngSubmit)="onSubmitSignUp()">
         <h2>Sign Up</h2>
+
+        <!-- Campo de email -->
         <div class="input-group">
           <input type="email" [(ngModel)]="userData.email" name="email" required>
           <label>Email</label>
         </div>
+
+        <!-- Campo de contraseña -->
         <div class="input-group">
           <input type="password" [(ngModel)]="userData.password" name="password" required>
           <label>Password</label>
         </div>
+
+        <!-- Botón de registro con email -->
         <button type="submit" class="btn">
           <img src="../../assets/img/email-icon.png" alt="Email Logo"> Sign up
         </button>
+
+        <!-- Botón de registro con Google -->
         <button type="button" class="btn google-btn" (click)="signInWithGoogle()">
           <img src="../../assets/img/google-icon.png" alt="Google Logo"> Sign up with Google
         </button>
+
+        <!-- Enlace para cambiar a formulario de login -->
         <div class="sign-link">
           <p>Already have an account? <a href="#" class="signIn-link" (click)="toggleForm($event, false)">Sign in</a></p>
         </div>
       </form>
     </div>
 
-    <!-- Formulario Sign In -->
+    <!-- Formulario de inicio de sesión -->
     <div class="form-wrapper sign-in">
       <form *ngIf="!showResetPasswordForm" (ngSubmit)="onSubmitLogin()">
         <h2>Login</h2>
+
+        <!-- Campo de email -->
         <div class="input-group">
           <input type="email" [(ngModel)]="userData.email" name="email" required>
           <label>Email</label>
         </div>
+
+        <!-- Campo de contraseña -->
         <div class="input-group">
           <input type="password" [(ngModel)]="userData.password" name="password" required>
           <label>Password</label>
         </div>
+
+        <!-- Enlace para mostrar el formulario de restablecimiento de contraseña -->
         <div class="forgot-pass">
           <a href="#" (click)="toggleFormResetPassword($event, true)">¿Olvidaste tu contraseña?</a>
         </div>
+
+        <!-- Botón de login con email -->
         <button type="submit" class="btn">
           <img src="../../assets/img/email-icon.png" alt="Email Logo"> Login
         </button>
+
+         <!-- Botón de login con Google -->
         <button type="button" class="btn google-btn" (click)="signInWithGoogle()">
           <img src="../../assets/img/google-icon.png" alt="Google Logo"> Login with Google
         </button>
+
+         <!-- Enlace para cambiar a formulario de registro -->
         <div class="sign-link">
           <p>Don't have an account? <a href="#" class="signUp-link" (click)="toggleForm($event, true)">Sign up</a></p>
         </div>
       </form>
       <div *ngIf="showResetPasswordForm">
+
         <!-- Formulario de restablecimiento de contraseña -->
         <div class="reset-password-form">
           <h2>Restablecer Contraseña</h2>
+
+          <!-- Campo para ingresar email de recuperación -->
           <div class="input-group">
             <input type="email" [(ngModel)]="emailForReset" name="emailForReset" required>
             <label>Correo Electrónico</label>
@@ -83,6 +109,7 @@
   </div>
 </body>
 
+<!-- Footer - Pie de página con enlaces y métodos de pago -->
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-column">

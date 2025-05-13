@@ -8,8 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './about-us.component.css'
 })
 export class AboutUsComponent {
-  currentYear: number = new Date().getFullYear();
+  currentYear: number = new Date().getFullYear(); // Año actual para mostrar en el footer
 
+   // Lista de logos para el slider animado
   logos = [
     { src: 'assets/img/aser.png', alt: 'Aser' },
     { src: 'assets/img/nvidia.png', alt: 'Nvidia' },
@@ -23,6 +24,7 @@ export class AboutUsComponent {
     { src: 'assets/img/apple.png', alt: 'Apple' }
   ];
 
+  // Lista de imágenes adicionales para un segundo slider o carrusel futuro
   images = [
     { src: 'assets/img/slider2_1.png', alt: 'Slider 1' },
     { src: 'assets/img/slider2_2.png', alt: 'Slider 2' },

@@ -1,10 +1,4 @@
-@font-face {
-  font-family: 'BasisGrotesque';
-  src: url('../../assets/fonts/BasisGrotesqueArabicPro-Light.woff2') format('woff2');
-  font-weight: bolder;
-  font-style: normal;
-}
-
+/* ======================== RESET / BASE ========================= */
 * {
   margin: 0;
   padding: 0;
@@ -17,6 +11,15 @@ body {
   background: linear-gradient(to bottom, #ffffff 0%, #1e3c72 100%);
 }
 
+/* Fuente personalizada */
+@font-face {
+  font-family: 'BasisGrotesque';
+  src: url('../../assets/fonts/BasisGrotesqueArabicPro-Light.woff2') format('woff2');
+  font-weight: bolder;
+  font-style: normal;
+}
+
+/* ======================== NAVBAR ========================= */
 .navbar {
   position: absolute;
   top: 0;
@@ -27,6 +30,7 @@ body {
   align-items: center;
   padding: 1rem 2rem;
   z-index: 1000;
+  background-color: white;
 }
 
 .navbar-brand a {
@@ -43,6 +47,7 @@ body {
   color: #00fffc;
 }
 
+/* Enlaces del navbar */
 .navbar-links {
   list-style: none;
   display: flex;
@@ -52,9 +57,7 @@ body {
 }
 
 .navbar-links li {
-  display: table-cell;
   position: relative;
-  padding: 15px 0;
 }
 
 .navbar-links a {
@@ -62,16 +65,30 @@ body {
   text-transform: uppercase;
   text-decoration: none;
   letter-spacing: 0.15em;
-  display: inline-block;
   padding: 15px 20px;
-  position: relative;
+  display: inline-block;
 }
 
 .navbar-links a:hover {
   color: #00fffc;
 }
 
-/* Contenedor del filtro */
+/* Botón hamburguesa para móvil */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.navbar-toggle span {
+  height: 3px;
+  width: 25px;
+  background-color: #333;
+  margin: 4px 0;
+  transition: 0.4s;
+}
+
+/* ======================== FILTRO ========================= */
 .filtro-container {
   display: flex;
   justify-content: center;
@@ -87,7 +104,7 @@ body {
   font-size: 16px;
 }
 
-/* Contenedor de productos */
+/* ======================== PRODUCTOS ========================= */
 .productos-container {
   display: flex;
   flex-wrap: wrap;
@@ -95,7 +112,6 @@ body {
   gap: 20px;
 }
 
-/* Tarjetas de productos */
 .producto {
   background: white;
   border-radius: 10px;
@@ -146,12 +162,11 @@ button:hover {
   background-color: #0056b3;
 }
 
-/*Footer*/
+/* ======================== FOOTER ========================= */
 .footer {
   background-color: #1e3c72;
   color: white;
   padding: 3rem 2rem 1rem 2rem;
-  font-family: 'BasisGrotesque', sans-serif;
 }
 
 .footer-content {
@@ -212,4 +227,31 @@ button:hover {
   font-size: 0.9rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding-top: 1rem;
+}
+
+/* ======== MEDIA QUERIES - RESPONSIVE ======== */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    position: relative;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+    padding-top: 1rem;
+  }
+
+  .filtro-container {
+    margin-top: 1rem;
+  }
+
+  .navbar-links a {
+    padding: 10px 0;
+    display: block;
+  }
 }

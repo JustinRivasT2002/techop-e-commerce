@@ -1,3 +1,4 @@
+/* ======== RESET Y FUENTE PERSONALIZADA ======== */
 * {
   margin: 0;
   padding: 0;
@@ -13,8 +14,10 @@
 
 body {
   background: linear-gradient(to bottom, #ffffff 0%, #1e3c72 100%);
+  font-family: 'BasisGrotesque', sans-serif;
 }
 
+/* ======== NAVBAR ======== */
 .navbar {
   font-family: 'BasisGrotesque', sans-serif;
   position: absolute;
@@ -70,7 +73,7 @@ body {
   color: #00fffc;
 }
 
-/* Contenedor del detalle del producto */
+/* ======== DETALLE DEL PRODUCTO ======== */
 .detalle-producto {
   max-width: 800px;
   margin: 100px auto;
@@ -81,14 +84,14 @@ body {
   animation: fadeIn 1s ease-in-out;
 }
 
-/* Imagen del producto */
+/* ======== IMAGEN DEL PRODUCTO ======== */
 .imagen-producto {
   width: 50%;
   max-height: 500px;
   object-fit: cover;
   border-radius: 10px;
-  margin-bottom: 20px;
-  margin-left: 25%;
+  margin: 0 auto 20px auto;
+  display: block;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -96,9 +99,8 @@ body {
   transform: scale(1.05);
 }
 
-/* Título del producto */
+/* ======== TEXTO Y DESCRIPCIÓN ======== */
 h1 {
-  font-family: 'BasisGrotesque';
   font-size: 2rem;
   color: #333;
   margin-bottom: 10px;
@@ -106,17 +108,15 @@ h1 {
   animation: slideIn 1s ease-in-out;
 }
 
-/* Descripción */
 p {
   text-align: center;
-  font-family: 'BasisGrotesque';
   font-size: 1.2rem;
   color: #555;
   line-height: 1.6;
   margin-bottom: 20px;
 }
 
-/* Categoría */
+/* ======== CATEGORÍA DESTACADA (opcional) ======== */
 .categoria {
   display: inline-block;
   font-size: 0.9rem;
@@ -126,10 +126,11 @@ p {
   animation: pulse 2s infinite;
 }
 
-/* Botones de acción */
+/* ======== BOTONES DE ACCIÓN ======== */
 .acciones {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   margin-top: 20px;
 }
 
@@ -143,27 +144,20 @@ button {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.boton-carrito {
-  background-color: #161615;
-  color: white;
-}
-
-.boton-carrito:hover {
-  background-color: #210be0;
-  transform: translateY(-2px);
-}
-
+.boton-carrito,
 .boton-comprar {
   background-color: #161615;
   color: white;
+  margin: 10px;
 }
 
+.boton-carrito:hover,
 .boton-comprar:hover {
   background-color: #210be0;
   transform: translateY(-2px);
 }
 
-/* Animaciones */
+/* ======== ANIMACIONES ======== */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -195,11 +189,11 @@ button {
   }
 }
 
+/* ======== FOOTER ======== */
 .footer {
   background-color: #1e3c72;
   color: white;
   padding: 3rem 2rem 1rem 2rem;
-  font-family: 'BasisGrotesque', sans-serif;
 }
 
 .footer p {
@@ -264,4 +258,62 @@ button {
   font-size: 0.9rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding-top: 1rem;
+}
+
+/* ======== MEDIA QUERIES - RESPONSIVE ======== */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    position: relative;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+    padding-top: 1rem;
+  }
+
+  .navbar-links a {
+    padding: 10px 0;
+    display: block;
+  }
+
+  .detalle-producto {
+    margin-top: 30px;
+    padding: 15px;
+  }
+
+  .imagen-producto {
+    width: 100%;
+  }
+
+  .acciones {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .boton-carrito,
+  .boton-comprar {
+    width: 100%;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 }

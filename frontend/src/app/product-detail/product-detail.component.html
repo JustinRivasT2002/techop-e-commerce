@@ -1,7 +1,7 @@
-<!-- Navbar -->
+<!-- Barra de navegación superior -->
 <nav class="navbar">
   <div class="navbar-brand">
-    <a routerLink="/">Techop</a>
+    <a routerLink="/">Techop</a> <!-- Enlace al inicio -->
   </div>
   <ul class="navbar-links">
     <li><a routerLink="/about-us">Sobre Nosotros</a></li>
@@ -11,6 +11,7 @@
   </ul>
 </nav>
 <body>
+  <!-- Mostrar producto si existe, o mensaje de carga si aún no ha llegado -->
   <div *ngIf="producto; else cargando">
     <div class="detalle-producto">
       <!-- Imagen del producto -->
@@ -25,12 +26,13 @@
       <!-- Mostrar la categoría -->
       <p>Stock disponible: {{ producto.stock_disponible }}</p>
 
-      <!-- Descripción del producto -->
+      <!-- Descripción personalizada generada dinámicamente -->
       <p>{{ nuevaDescripcion }}</p>
 
+      <!-- Precio del producto -->
       <p>Precio: {{ producto.precio }}€</p>
 
-      <!-- Botones de interacción -->
+      <!-- Botones de acción -->
       <div class="acciones">
         <button (click)="anadirAlCarrito()" class="boton-carrito">Añadir al Carrito</button>
         <button (click)="comprarAhora()" class="boton-comprar">Comprar Ahora</button>
@@ -39,6 +41,7 @@
   </div>
 </body>
 
+<!-- Pie de página con enlaces, soporte y métodos de pago -->
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-column">
@@ -77,6 +80,7 @@
   </div>
 </footer>
 
+<!-- Plantilla alternativa mientras se carga el producto -->
 <ng-template #cargando>
   <p>Cargando producto...</p>
 </ng-template>

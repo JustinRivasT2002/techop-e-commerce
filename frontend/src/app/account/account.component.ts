@@ -10,34 +10,38 @@ import { User } from '../interfaces/user.interfaces';
   styleUrl: './account.component.css'
 })
 export class AccountComponent implements OnInit {
-  emailReceived: string = '';
-  passwordReceived: string = '';
-  emailForReset: string = '';
-  currentYear: number = new Date().getFullYear();
+  emailReceived: string = ''; // Email recibido desde los formularios
+  passwordReceived: string = ''; // Password recibido desde los formularios
+  emailForReset: string = ''; // Email de reset
+  currentYear: number = new Date().getFullYear(); // Año actual para el footer
 
-  isSignUp: boolean = true; // Controla si estamos en el formulario de registro o login
-  showResetPasswordForm: boolean = false;
+  isSignUp: boolean = true; // Flag para alternar entre formulario de registro e inicio de sesión
+  showResetPasswordForm: boolean = false; // Flag para mostrar u ocultar formulario de restablecimiento
 
+  // Objeto de usuario enlazado a los formularios
   userData: User = {
     email: '',
     password: '',
   };
 
-  errorMessage: string = ''; // Para mostrar el mensaje de error en caso de fallo
+  errorMessage: string = ''; // Mensaje de error a mostrar en la interfaz
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
+    // Selección de elementos del DOM para manejar animaciones de formulario
     const wrapper = document.querySelector('.wrapper');
     const signUpLink = document.querySelector('.signUp-link');
     const signInLink = document.querySelector('.signIn-link');
 
+    // Evento para animar el formulario al pasar a "Sign Up"
     signUpLink?.addEventListener('click', (event) => {
       event.preventDefault(); // Evita que se recargue la página
       wrapper?.classList.add('animate-signIn');
       wrapper?.classList.remove('animate-signUp');
     });
 
+    // Evento para animar el formulario al pasar a "Sign In"
     signInLink?.addEventListener('click', (event) => {
       event.preventDefault();
       wrapper?.classList.add('animate-signUp');
@@ -46,8 +50,7 @@ export class AccountComponent implements OnInit {
   }
 
   onSubmit() {
-    // Verificar si estamos en el formulario de inicio de sesión o registro
-    const isSignInFormVisible = document.querySelector('.form-wrapper.sign-in')?.classList.contains('active');
+    const isSignInFormVisible = document.querySelector('.form-wrapper.sign-in')?.classList.contains('active'); // Verificar si estamos en el formulario de inicio de sesión o registro
 
     const authMethod = isSignInFormVisible ? this.authService.login : this.authService.signUp;
 
@@ -63,6 +66,7 @@ export class AccountComponent implements OnInit {
       });
   }
 
+  // Registro de nuevo usuario
   onSubmitSignUp() {
     if(!this.userData.email || !this.userData.email) {
       this.showError('Uno o todos los campos de registro estan vacios. Intente nuevamente.');
@@ -80,6 +84,7 @@ export class AccountComponent implements OnInit {
     }
   }
 
+  // Solicitar restablecimiento de contraseña
   onResetPassword() {
     if (!this.emailForReset) {
       this.showError('Por favor, ingresa tu correo electrónico.');
@@ -97,6 +102,7 @@ export class AccountComponent implements OnInit {
       });
   }
 
+  // Alternar visibilidad del formulario de recuperación de contraseña
   toggleFormResetPassword(event: Event, showReset: boolean) {
     event.preventDefault();
     this.clearForm();
@@ -104,6 +110,7 @@ export class AccountComponent implements OnInit {
     this.showResetPasswordForm = showReset;
   }
 
+  // Inicio de sesión de usuario
   onSubmitLogin() {
     this.authService.login(this.userData)
       .then(() => {
@@ -117,6 +124,7 @@ export class AccountComponent implements OnInit {
       });
   }
 
+  // Inicio de sesión con Google
   signInWithGoogle() {
     this.authService.logInGoogle()
     .then(() => {
@@ -129,6 +137,7 @@ export class AccountComponent implements OnInit {
     });
   }
 
+  // Alternar entre los formularios de inicio y registro
   toggleForm(event: Event, isSignUp: boolean) {
     event.preventDefault();
     this.isSignUp = isSignUp;
@@ -143,6 +152,7 @@ export class AccountComponent implements OnInit {
     }
   }
 
+  // Mostrar mensaje de error durante unos segundos
   showError(message: string) {
     this.errorMessage = message;
     setTimeout(() => {
@@ -150,6 +160,7 @@ export class AccountComponent implements OnInit {
     }, 3000);
   }
 
+  // Limpiar los campos del formulario
   clearForm() {
     this.userData.email = '';
     this.userData.password = '';

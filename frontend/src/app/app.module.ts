@@ -1,4 +1,4 @@
-//Angular generics imports
+//Angular genericos imports
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -9,8 +9,6 @@ import { HomeComponent } from './home/home.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { CartComponent } from './cart/cart.component';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AboutUsComponent } from './about-us/about-us.component';
@@ -19,7 +17,7 @@ import { AccountComponent } from './account/account.component';
 //Routes import
 import { AppRoutingModule } from './app-routing.module';
 
-// Firebase imports (modular approach)
+// Firebase imports
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { firebaseConfig } from '../environments/firebase-config';
@@ -35,8 +33,6 @@ import { HttpClientModule } from '@angular/common/http';
     ProductListComponent,
     ProductDetailComponent,
     CartComponent,
-    CheckoutComponent,
-    OrderSummaryComponent,
     ProfileComponent,
     NotFoundComponent,
     AboutUsComponent,

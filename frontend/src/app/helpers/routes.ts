@@ -3,8 +3,6 @@ import { HomeComponent } from '../home/home.component';
 import { ProductListComponent } from '../product-list/product-list.component';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { CartComponent } from '../cart/cart.component';
-import { CheckoutComponent } from '../checkout/checkout.component';
-import { OrderSummaryComponent } from '../order-summary/order-summary.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { NotFoundComponent } from '../not-found/not-found.component';
 import { AboutUsComponent } from '../about-us/about-us.component';
@@ -30,16 +28,6 @@ export const AppRoutes: Routes = [
     path: 'cart',
     component: CartComponent,  // Carrito de compras
     title: 'Cart'
-  },
-  {
-    path: 'checkout',
-    component: CheckoutComponent,  // Proceso de pago
-    title: 'Checkout'
-  },
-  {
-    path: 'order-summary',
-    component: OrderSummaryComponent,  // Resumen de la orden
-    title: 'Order Summary'
   },
   {
     path: 'account',
