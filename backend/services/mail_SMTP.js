@@ -48,57 +48,75 @@ const sendWelcomeEmail = async (email) => {
     }
 };
 
+// Función que envia un correo al cliente con los detalles de su pedido
 const sendOrderConfirmationEmail = async (pedido) => {
-    const { email, pedidoId, total, detalles } = pedido;
+  const {
+    email,
+    nombreCliente,
+    telefono,
+    direccion,
+    total,
+    pedidoId,
+    detalles
+  } = pedido;
 
-    const productosHtml = detalles.map(item => `
-        <tr>
-            <td>${item.nombre}</td>
-            <td>${item.cantidad}</td>
-            <td>${item.precio_unitario.toFixed(2)} €</td>
-            <td>${(item.cantidad * item.precio_unitario).toFixed(2)} €</td>
-        </tr>
-    `).join('');
+  const productosHtml = detalles.map(item => `
+    <tr>
+      <td>${item.nombreProducto}</td>
+      <td>${item.cantidad}</td>
+      <td>${item.precio_unitario.toFixed(2)} €</td>
+      <td>${(item.cantidad * item.precio_unitario).toFixed(2)} €</td>
+    </tr>
+  `).join('');
 
-    const html = `
-        <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
-            <h2>🛒 Confirmación de tu pedido #${pedidoId}</h2>
-            <p>Gracias por tu compra en <strong>Techop</strong>.</p>
-            <p>Detalles de tu pedido:</p>
-            <table style="width: 100%; border-collapse: collapse;" border="1">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Precio Unitario</th>
-                        <th>Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${productosHtml}
-                </tbody>
-            </table>
-            <p><strong>Total: ${total.toFixed(2)} €</strong></p>
-            <p>Recibirás una actualización cuando tu pedido esté en camino.</p>
-            <p>¡Gracias por confiar en nosotros!</p>
-        </div>
-    `;
+  const html = `
+    <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
+      <h2>🛒 Confirmación de tu pedido #${pedidoId}</h2>
+      <p>Hola <strong>${nombreCliente}</strong>, gracias por tu compra en <strong>Techop</strong>.</p>
 
-    const mailOptions = {
-        from: process.env.SMTP_USER,
-        to: email,
-        subject: `📦 Confirmación de tu pedido #${pedidoId} en Techop`,
-        html,
-    };
+      <h3>📦 Información del pedido:</h3>
+      <ul style="list-style: none; padding-left: 0;">
+        <li><strong>📍 Dirección:</strong> ${direccion}</li>
+        <li><strong>📞 Teléfono:</strong> ${telefono}</li>
+        <li><strong>✉️ Email:</strong> ${email}</li>
+      </ul>
 
-    try {
-        const info = await transporter.sendMail(mailOptions);
-        console.log('📧 Confirmación de pedido enviada:', info.response);
-    } catch (error) {
-        console.error('❌ Error al enviar correo de confirmación:', error);
-        throw error;
-    }
+      <h3>🧾 Detalles de los productos:</h3>
+      <table style="width: 100%; border-collapse: collapse; margin-top: 10px;" border="1">
+        <thead style="background-color: #f2f2f2;">
+          <tr>
+            <th style="padding: 8px;">Producto</th>
+            <th style="padding: 8px;">Cantidad</th>
+            <th style="padding: 8px;">Precio Unitario</th>
+            <th style="padding: 8px;">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${productosHtml}
+        </tbody>
+      </table>
+
+      <p style="margin-top: 15px; font-size: 18px;"><strong>Total: ${total.toFixed(2)} €</strong></p>
+
+      <p>Recibirás una actualización cuando tu pedido esté en camino.</p>
+      <p>¡Gracias por confiar en nosotros!</p>
+    </div>
+  `;
+
+  const mailOptions = {
+    from: process.env.SMTP_USER,
+    to: email,
+    subject: `📦 Confirmación de tu pedido #${pedidoId} en Techop`,
+    html,
+  };
+
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log('📧 Confirmación de pedido enviada:', info.response);
+  } catch (error) {
+    console.error('❌ Error al enviar correo de confirmación:', error);
+    throw error;
+  }
 };
-
 
 module.exports = { sendWelcomeEmail, sendOrderConfirmationEmail };

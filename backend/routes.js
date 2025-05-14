@@ -96,7 +96,7 @@ router.post('/create-order', async (req, res) => {
     const result = await crearPedido(pedidoData);
 
     // Enviar correo de confirmación
-    await sendOrderConfirmationEmail(pedidoData);
+    await sendOrderConfirmationEmail(result.emailData);
 
     res.status(201).json(result);
   } catch (error) {

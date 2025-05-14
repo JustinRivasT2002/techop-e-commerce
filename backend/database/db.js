@@ -80,7 +80,7 @@ const getProductos = async () => {
   }
 };
 
-// obtener clientes por ID
+// obtener productos por ID
 const getProductoById = async (id) => {
   try {
     const request = new sql.Request();
@@ -198,8 +198,39 @@ const crearPedido = async (pedidoData) => {
       `);
     }
 
+    // Obtener los nombres de los productos por ID
+    const ids = pedidoData.detalles.map(item => item.producto_id);
+    const idsUnicos = [...new Set(ids)];
+
+    const requestNombres = new sql.Request();
+    const idsString = idsUnicos.join(',');
+
+    const productosInfo = await requestNombres.query(`
+      SELECT id, nombre FROM productos WHERE id IN (${idsString})
+    `);
+
+    // Mapea los nombres a los productos
+    pedidoData.detalles = pedidoData.detalles.map(item => {
+      const producto = productosInfo.recordset.find(p => p.id === item.producto_id);
+      return {
+        ...item,
+        nombreProducto: producto?.nombre || 'Desconocido'
+      };
+    });
+
+    // Crear objeto de detalles del pedido para el correo
+    const productDetails = {
+      email: pedidoData.email,
+      nombreCliente: pedidoData.nombre,
+      telefono: pedidoData.telefono,
+      direccion: pedidoData.direccion,
+      total: pedidoData.total,
+      pedidoId: pedidoId,
+      detalles: pedidoData.detalles,
+    }
+
     console.log(`✅ Pedido creado con ID ${pedidoId}`);
-    return { pedidoId, message: 'Pedido registrado correctamente.' };
+    return { pedidoId, message: 'Pedido registrado correctamente.', emailData: productDetails };
   } catch (error) {
     console.error('❌ Error al crear el pedido:', error);
     throw error;
