@@ -7,7 +7,7 @@ import { ProductoEnCarrito } from '../interfaces/productoEnCarrito';
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = '/api/create-order'; // URL del endpoint para crear pedidos
+  private apiUrl = 'https://techop-e-commerce.onrender.com/api/create-order'; // URL del endpoint para crear pedidos
 
   constructor(private http: HttpClient) {}
 

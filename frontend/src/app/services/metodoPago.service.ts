@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MetodoPagoService {
-  private apiUrl = '/api/metodos-pago'; // URL del endpoint para obtener los métodos de pago
+  private apiUrl = 'https://techop-e-commerce.onrender.com/api/metodos-pago'; // URL del endpoint para obtener los métodos de pago
 
   constructor(private http: HttpClient) {}
 

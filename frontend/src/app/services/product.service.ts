@@ -7,7 +7,7 @@ import { Producto } from '../interfaces/producto.interfaces';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = '/api/productos'; // URL del endpoint para obtener productos
+  private apiUrl = 'https://techop-e-commerce.onrender.com/api/productos'; // URL del endpoint para obtener productos
   constructor(private http: HttpClient) {}
 
   // Obtener la lista de productos
