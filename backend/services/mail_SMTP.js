@@ -24,7 +24,7 @@ const sendWelcomeEmail = async (email) => {
                 <p>Con Techop, tienes acceso a los mejores productos de tecnología, con ofertas y beneficios exclusivos.</p>
                 <img src="cid:techop_logo" alt="Techop Logo" style="width: 200px; margin: 20px 0;">
                 <p>Explora nuestra tienda y disfruta de una experiencia única.</p>
-                <a href="http://localhost:4200" style="display: inline-block; padding: 10px 20px; color: white; background-color: #007bff; text-decoration: none; border-radius: 5px;">Ir a Techop</a>
+                <a href="https://techop-store.vercel.app/" style="display: inline-block; padding: 10px 20px; color: white; background-color: #007bff; text-decoration: none; border-radius: 5px;">Ir a Techop</a>
                 <p style="margin-top: 20px;">¡Gracias por confiar en nosotros! 💙</p>
             </div>
         `,

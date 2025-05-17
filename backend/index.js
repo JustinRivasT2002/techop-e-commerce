@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 connectDB();
 
 // Usar las rutas
-app.use('/', routes);
+app.use('/api', routes);
 
 // Iniciar servidor
 app.listen(port, () => console.log(`🚀 Servidor corriendo en el puerto ${port}`));

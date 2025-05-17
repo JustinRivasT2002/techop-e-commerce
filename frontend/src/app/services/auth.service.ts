@@ -55,7 +55,7 @@ export class AuthService {
 
   // Este método se encarga de enviar un correo de bienvenida al usuario después de registrarse
   private sendWelcomeEmail(email: string) {
-    this.http.post<{ message: string }>('http://localhost:3000/register', { email: email })
+    this.http.post<{ message: string }>('/api/register', { email: email })
     .subscribe(
       response => {
         console.log('Correo de bienvenida enviado:', response.message);

@@ -7,7 +7,7 @@ import { ProductoEnCarrito } from '../interfaces/productoEnCarrito';
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = 'http://localhost:3000/create-order'; // URL del endpoint para crear pedidos
+  private apiUrl = '/api/create-order'; // URL del endpoint para crear pedidos
 
   constructor(private http: HttpClient) {}
 
