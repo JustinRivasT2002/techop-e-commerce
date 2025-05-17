@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "npx build",
+    "deploy": "ng build && cd dist/techop-e-commerce/browser && vercel --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
