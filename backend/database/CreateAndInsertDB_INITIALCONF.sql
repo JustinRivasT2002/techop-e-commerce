@@ -192,14 +192,14 @@ INSERT INTO inventarios (producto_id, cantidad) VALUES
 (25, 9);  -- Smartwatch Apple Watch Series 8
 
 -- Actualizar inventario automaticamente (Recordatorio personal de descomentar para implementarlo automaticamente en el servidor)
-CREATE TRIGGER tr_actualizar_inventario
-ON detalles_pedido
-AFTER INSERT
-AS
-BEGIN
-    UPDATE i
-    SET i.cantidad = i.cantidad - d.cantidad,
-       i.ultima_actualizacion = GETDATE()
-    FROM inventarios i
-    JOIN inserted d ON i.producto_id = d.producto_id;
-END;
+--CREATE TRIGGER tr_actualizar_inventario
+--ON detalles_pedido
+--AFTER INSERT
+--AS
+--BEGIN
+--    UPDATE i
+--    SET i.cantidad = i.cantidad - d.cantidad,
+--       i.ultima_actualizacion = GETDATE()
+--    FROM inventarios i
+--    JOIN inserted d ON i.producto_id = d.producto_id;
+--END;
